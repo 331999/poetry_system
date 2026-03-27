@@ -1,0 +1,283 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>挥毫泼墨</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+
+    <header id="header">
+        <div class="navbar navbar-inverse" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'index' %}">
+                        <h1><img src="{% static 'img/logo.png' %}" alt="logo"></h1>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a href="{% url 'index' %}">首页</a></li>
+                        <li class="dropdown"><a href="#">朝代 <i class="fa fa-angle-down"></i></a>
+                            <ul role="menu" class="sub-menu">
+                                <li class="dropdown"><a href="#">唐代<i class="fa fa-angle-down"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{% url 'chutang' %}">风神初振初唐诗</a></li>
+                                        <li><a href="{% url 'shengtang' %}">律骨兼备盛唐诗</a></li>
+                                        <li><a href="{% url 'wantang' %}">创新求变中唐诗</a></li>
+                                        <li><a href="{% url 'zhongtang' %}">诗国余晖晚唐诗</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="#">宋代<i class="fa fa-angle-down"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{% url 'wudai' %}">展苞初放五代词</a></li>
+                                        <li><a href="{% url 'beisong1' %}">格高韵远北宋词（一）</a></li>
+                                        <li><a href="{% url 'beisong2' %}">格高韵远北宋词（二）</a></li>
+                                        <li><a href="{% url 'nansong' %}">极其工变南宋词</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="#">辽代<i class="fa fa-angle-down"></i></a></li>
+                                <li class="dropdown"><a href="#">金代<i class="fa fa-angle-down"></i></a></li>
+                                <li class="dropdown"><a href="#">元代<i class="fa fa-angle-down"></i></a></li>
+                                <li class="dropdown"><a href="#">明代<i class="fa fa-angle-down"></i></a></li>
+                                <li class="dropdown"><a href="#">清代<i class="fa fa-angle-down"></i></a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href="#">文人骚客 <i class="fa fa-angle-down"></i></a>
+                            <ul role="menu" class="sub-menu">
+                                <li><a href="{% url 'libai' %}">李白</a></li>
+                                <li><a href="{% url 'dufu' %}">杜甫</a></li>
+                                <li><a href="{% url 'dongpo' %}">东坡</a></li>
+                                <li><a href="{% url 'jiaxuan' %}">稼轩</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'write:selfWrite' %}">挥毫泼墨</a></li>
+                        <li><a href="{% url 'discuss' %}">推心置腹</a></li>
+                        <li><a href="{% url 'question:find' %}">孰能无惑</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="page-breadcrumb">
+        <div class="vertical-center sun">
+            <div class="container">
+                <div class="row">
+                    <div class="action">
+                        <div class="col-sm-12">
+                            <h1 class="title">寄语</h1>
+                            <p>信步三百米甬道，历阅五千年沧桑。请君莫惜笔墨，一领时代风骚。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/#action-->
+
+    <section id="shortcodes">
+        <div class="container">
+
+            <div id="buttons-container">
+                <h2 class="page-header">文化标签</h2>
+                <div class="bs-example">
+                    <button type="button" class="btn btn-xs btn-default">唐诗</button>
+                    <button type="button" class="btn btn-xs btn-primary">题材丰富</button>
+                    <button type="button" class="btn btn-xs btn-success">风格多样</button>
+                    <button type="button" class="btn btn-xs btn-info">流派众多</button>
+                    <button type="button" class="btn btn-xs btn-warning">体制齐备</button>
+                    <button type="button" class="btn btn-xs btn-danger">时代风骚</button>
+                </div>
+                <div class="bs-example">
+                    <button type="button" class="btn btn-sm btn-default">宋词</button>
+                    <button type="button" class="btn btn-sm btn-primary">音乐性</button>
+                    <button type="button" class="btn btn-sm btn-success">韵律美</button>
+                    <button type="button" class="btn btn-sm btn-info">生活气息</button>
+                    <button type="button" class="btn btn-sm btn-warning">豪放派</button>
+                    <button type="button" class="btn btn-sm btn-danger">婉约派</button>
+                </div>
+                <div class="bs-example">
+                    <button type="button" class="btn btn-default">李白</button>
+                    <button type="button" class="btn btn-primary">生动</button>
+                    <button type="button" class="btn btn-success">大胆夸张</button>
+                    <button type="button" class="btn btn-info">超越现实</button>
+                    <button type="button" class="btn btn-warning">浪漫主义</button>
+                    <button type="button" class="btn btn-danger">雄奇飘逸</button>
+                </div>
+
+                <div class="bs-example">
+                    <button type="button" class="btn btn-lg btn-default"><i class="fa fa-cog"></i> 杜甫</button>
+                    <button type="button" class="btn btn-lg btn-primary"><i class="fa fa-heart"></i> 沉郁顿挫</button>
+                    <button type="button" class="btn btn-lg btn-success">现实主义</button>
+                    <button type="button" class="btn btn-lg btn-info">关注民生</button>
+                    <button type="button" class="btn btn-lg btn-warning">博大深厚</button>
+                    <button type="button" class="btn btn-lg btn-danger">严肃深沉</button>
+                </div>
+            </div><!--/#buttons-container-->
+
+            <div id="feature-container"></div><!--/#feature-container-->
+
+            <div id="progressbar-container"></div><!--/#progressbar-container-->
+
+            <div id="map-container"></div><!--/#map-container-->
+
+            <div id="video-container"></div><!--/#video-container-->
+
+            <div id="carousel-container">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators visible-xs">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="{% static 'img/1.png' %}" alt="">
+                            <div class="carousel-caption">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="{% static 'img/3.png' %}" alt="">
+                            <div class="carousel-caption">
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="{% static 'img/2.png' %}" alt="">
+                            <div class="carousel-caption">
+                            </div>
+                        </div>
+                    </div>
+                    <a class="left carousel-control hidden-xs" href="#carousel-example-generic" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control hidden-xs" href="#carousel-example-generic" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
+            </div>
+
+            <div id="alert-container"></div>
+            <div id="testimonial-container">
+                <div class="col-md-4 col-sm-12">
+                    <div class="contact-form bottom">
+                        <h2></h2>
+                        <h2></h2>
+                        <h2>雁过留声</h2>
+                        <form id="main-contact-form" name="contact-form" method="post"
+                              action={% url 'write:selfWrite' %}
+                                      enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input v-model="poet_name" name="poet_name" class="form-control"
+                                       required="required"
+                                       placeholder="作者名">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" v-model="poetry_name" name="poetry_name" class="form-control"
+                                       required="required"
+                                       placeholder="古诗名">
+                            </div>
+
+                            <div class="form-group">
+                                <textarea name="message" v-model="poetry_content" id="poetry_content" required
+                                          class="form-control" rows="8"
+                                          placeholder="古诗内容"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="submit" class="btn btn-submit" value="提交我的作品">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2 class="page-header">他山之石</h2>
+                        <div class="testimonial">
+                            <div class="media">
+{#                                {% for poem in poems %}#}
+{#                                    <div class="media">#}
+{#                                        <div class="pull-left">#}
+{#                                            <a href="#"><img src="#" alt=""></a>#}
+{#                                        </div>#}
+{#                                        <div class="media-body">#}
+{#                                            <blockquote>#}
+{#                                                <p>{{ poem.poetry_name }}</p>#}
+{#                                                <p>{{ poem.poetry_content }}</p>#}
+{#                                            </blockquote>#}
+{#                                            <h3><a href="#"> {{ poem.poet_name }}</a></h3>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                {% endfor %}#}
+                            </div>
+
+                            <div class="media">
+                                <div class="pull-left">
+                                    <a href="#"><img src="#" alt=""></a>
+                                </div>
+                                <div class="media-body">
+                                    <blockquote>
+                                        <p>江城子·空山新雨</p>
+                                        <p>
+                                            始觉风雨任情长，笑语迎，意深藏。贪欢笙醉，歌尽舞湿裳。不解彩云自何方，凝落晖，俱满堂。</p>
+                                        <p>
+                                            未申平分春色往，春红逝，麦出芒。微醺香销，梦深呓语狂。自古游子诉离殇，新雨后，嵩山香。</p>
+                                    </blockquote>
+                                    <h3><a href="#">-熠睿fly</a></h3>
+                                </div>
+                            </div>
+
+                            <div class="media">
+                                <div class="pull-left">
+                                    <a href="#"><img src="#" alt=""></a>
+                                </div>
+                                <div class="media-body">
+                                    <blockquote>
+                                        <p>无题</p>
+                                        <p>廿三残月夜寂寥，</p>
+                                        <p>信书片语时磨销。</p>
+                                        <p>喜见欢士萦堂满，</p>
+                                        <p>吾孤亦足问天骄。</p>
+                                    </blockquote>
+                                    <h3><a href="">-佚名</a></h3>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="padding"></div>
+        </div>
+    </section>
+</div>
+
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.fitvids.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/holder.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/lightbox.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/vue-2.5.16.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/axios-0.18.0.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/self_write_poetry.js' %}"></script>
+
+</body>
+</html>

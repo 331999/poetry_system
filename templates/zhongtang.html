@@ -1,0 +1,202 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>中唐诗</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+
+</head><!--/head-->
+
+<body>
+<header id="header">
+    <div class="navbar navbar-inverse" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    <h1><img src="{% static 'img/logo.png' %}" alt="logo"></h1>
+                </a>
+
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="{% url 'index' %}">首页</a></li>
+                    <li class="dropdown"><a href="#">朝代 <i class="fa fa-angle-down"></i></a>
+                        <ul role="menu" class="sub-menu">
+                            <li class="dropdown"><a href="{% url 'dynasty' %}">唐代<i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{% url 'chutang' %}">风神初振初唐诗</a></li>
+                                    <li><a href="{% url 'shengtang' %}">律骨兼备盛唐诗</a></li>
+                                    <li><a href="{% url 'zhongtang' %}">创新求变中唐诗</a></li>
+                                    <li><a href="{% url 'wantang' %}">诗国余晖晚唐诗</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#">宋代<i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{% url 'wudai' %}">展苞初放五代词</a></li>
+                                    <li><a href="{% url 'beisong1' %}">格高韵远北宋词（一）</a></li>
+                                    <li><a href="{% url 'beisong2' %}">格高韵远北宋词（二）</a></li>
+                                    <li><a href="{% url 'nansong' %}">极其工变南宋词</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#">辽代<i class="fa fa-angle-down"></i></a></li>
+                            <li class="dropdown"><a href="#">金代<i class="fa fa-angle-down"></i></a></li>
+                            <li class="dropdown"><a href="#">元代<i class="fa fa-angle-down"></i></a></li>
+                            <li class="dropdown"><a href="#">明代<i class="fa fa-angle-down"></i></a></li>
+                            <li class="dropdown"><a href="#">清代<i class="fa fa-angle-down"></i></a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#">文人骚客 <i class="fa fa-angle-down"></i></a>
+                        <ul role="menu" class="sub-menu">
+                            <li><a href="{% url 'libai' %}">李白</a></li>
+                            <li><a href="{% url 'dufu' %}">杜甫</a></li>
+                            <li><a href="{% url 'dongpo' %}">东坡</a></li>
+                            <li><a href="{% url 'jiaxuan' %}">稼轩</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'write:selfWrite' %}">挥毫泼墨</a></li>
+                    <li><a href="{% url 'discuss' %}">推心置腹</a></li>
+                    <li><a href="{% url 'question:find' %}">孰能无惑</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="page-breadcrumb">
+    <div class="vertical-center sun">
+        <div class="container">
+            <div class="row">
+                <div class="action">
+                    <div class="col-sm-12">
+                        <h1 class="title">创新求变中唐诗</h1>
+                        <p>唐代中后期,王朝的鼎盛期已过,但诗歌创作仍未衰歇</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/#action-->
+
+<section id="company-information" class="padding-top">
+    <div class="container">
+        <div class="row">
+            <div class="about-us">
+                <div class="col-sm-7 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms">
+                    <h2 class="bold">时代特色</h2>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <img src="#" class="img-responsive" alt="">
+                        </div>
+                        <div class="col-sm-7">
+                            <h3 class="top-zero">创新求变中唐诗</h3>
+                            <p>
+                                唐代中后期,王朝的鼎盛期已过,但诗歌创作仍未衰歇,先后出现了韩愈、柳宗元、张籍、李贺、白居易、元稹、刘禹锡、杜牧、李商隐、温庭筠、杜荀鹤等等风格不一的杰出诗人.他们的诗从不同角度反映了唐帝国走向衰落过程中的危机和民间苦难,艺术成就很高,对后世影响也很大.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h2>怀远梦天</h2>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-3 portfolio-item branded folio">
+                    <div class="portfolio-wrapper">
+                        <div class="portfolio-single">
+                            <div class="portfolio-thumb">
+                                <img src="#" class="img-responsive" alt="">
+                            </div>
+
+                        </div>
+
+                        <div class="portfolio-view">
+                            <ul class="nav nav-pills">
+                                <li><a href="portfolio-details.html"><i class="fa fa-link"></i></a></li>
+                                <li><a href="images/portfolio/2.jpg" data-lightbox="example-set"><i
+                                        class="fa fa-eye"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="map-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-header">作品赏析</h2>
+            </div>
+            <div class="col-md-6">
+                <ul id="tab2" class="nav nav-pills">
+                    <li class="active"><a href="#tab2-item1" data-toggle="tab">寄李儋元锡</a></li>
+                    <li><a href="#tab2-item2" data-toggle="tab">左迁至蓝关示侄孙湘</a></li>
+                    <li><a href="#tab2-item3" data-toggle="tab">登柳州城楼寄漳汀封连四州</a></li>
+                    <li><a href="#tab2-item4" data-toggle="tab">西塞山怀古</a></li>
+                    <li><a href="#tab2-item5" data-toggle="tab">望月有感</a></li>
+                    <li><a href="#tab2-item6" data-toggle="tab">天上谣</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade active in" id="tab2-item1">
+                        <p>去年花里逢君别，今日花开已一年。
+                        <p></P>世事茫茫难自料，春愁黯黯独成眠。<p></P>身多疾病思田里，邑有流亡愧俸钱。<p></P>
+                        闻道欲来相问讯，西楼望月几回圆。</p>
+                    </div>
+                    <div class="tab-pane fade" id="tab2-item2">
+                        <p>一封朝奏九重天，夕贬潮州路八千。
+                        <p></P> 欲为圣朝除弊事，肯将衰朽惜残年！ <p></P>云横秦岭家何在？雪拥蓝关马不前。 <p></P>
+                        知汝远来应有意，好收吾骨瘴江边。 </p>
+                    </div>
+                    <div class="tab-pane fade" id="tab2-item3">
+                        <p>城上高楼接大荒，海天愁思正茫茫。
+                        <p></P>惊风乱飐芙蓉水，密雨斜侵薜荔墙。<p></P>岭树重遮千里目，江流曲似九回肠。<p></P>
+                        共来百越文身地，犹自音书滞一乡。</p>
+                    </div>
+                    <div class="tab-pane fade" id="tab2-item4">
+                        <p>王濬楼船下益州，金陵王气黯然收。
+                        <p></P>千寻铁锁沉江底，一片降幡出石头。<p></P>人世几回伤往事，山形依旧枕寒流。<p></P>
+                        今逢四海为家日，故垒萧萧芦荻秋。</p>
+                    </div>
+                    <div class="tab-pane fade" id="tab2-item5">
+                        <p>时难年荒世业空，弟兄羁旅各西东。
+                        <p></P>田园寥落干戈后，骨肉流离道路中。 <p></P>吊影分为千里雁，辞根散作九秋蓬。<p></P>
+                        共看明月应垂泪，一夜乡心五处同。</p>
+                    </div>
+                    <div class="tab-pane fade" id="tab2-item6">
+                        <p>天河夜转漂回星，银浦流云学水声。
+                        <p></P>玉宫桂树花未落，仙妾采香垂珮缨。<p></P>秦妃卷帘北窗晓，窗前植桐青凤小。<p></P>
+                        王子吹笙鹅管长，呼龙耕烟种瑶草。<p></P>粉霞红绶藕丝裙，青洲步拾兰苕春。
+                        <p></P>东指羲和能走马，海尘新生石山下。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/#map-section-->
+
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/lightbox.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>古诗词鉴赏网</title>
+    <link rel="stylesheet" href="{% static 'css/loginRegister.css' %}">
+    <script src="{% static 'js/axios-0.18.0.min.js' %}"></script>
+
+</head>
+
+<body background="{% static 'img/loginRegister/background1.jpg' %}">
+<button class="backToHomeBtn" id="backToHomeBtn">
+    <a href="{% url 'index' %}"><img src="{% static 'img/loginRegister/backToHome.webp' %}" alt="返回首页"
+                                     title="返回首页" class="BtnImg"></a>
+</button>
+
+<div class="container">
+    <div class="form-box">
+        <!-- 注册 -->
+        <div class="register-box hidden">
+            <form id="registerForm" action="" method="post">
+                {% csrf_token %}
+                <h1>注册</h1>
+                <input type="text" id="register_studentId" placeholder="学号">
+                <span aria-live="polite" id="register_stuId"></span>
+
+                <input type="password" placeholder="密码" id="pwd1">
+                <span id="pwd1Span" aria-live="polite"></span></p>
+
+                <input type="password" placeholder="确认密码" id="pwd2">
+                <span id="pwd2Span" aria-live="polite"></span></p>
+
+                <button type="submit" id="submitButton1" disabled>注册</button>
+            </form>
+        </div>
+        <!-- 登录 -->
+        <div class="login-box">
+            <form id="loginForm">
+                {% csrf_token %}
+                <h1>登录</h1>
+                <input type="text" id="login_studentId" placeholder="学号">
+                <span aria-live="polite" id="login_stuId"></span>
+
+                <input type="password" placeholder="密码" id="login_pwd">
+                <button type="submit" id="submitButton2">登录</button>
+            </form>
+        </div>
+    </div>
+    <div class="con-box left">
+        <h2>欢迎来到<span>古诗词鉴赏网</span></h2>
+        <p>快来结识你的<span>新朋友</span>吧</p>
+
+        <img src="{% static 'img/loginRegister/register1.png' %}">
+        <p>已有账号</p>
+        <button id="login">去登录</button>
+    </div>
+    <div class="con-box right">
+        <h2>欢迎来到<span>古诗词鉴赏网</span></h2>
+        <p>快来结识你的<span>新朋友</span>吧</p>
+        <img src="{% static 'img/loginRegister/login.png' %}">
+        <p>没有账号？</p>
+        <button id="register">去注册</button>
+    </div>
+</div>
+
+<script src="{% static 'js/loginRegister.js' %}"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

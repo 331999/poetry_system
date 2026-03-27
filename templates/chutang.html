@@ -117,7 +117,11 @@
                     <h2 class="bold">时代特色</h2>
                     <div class="row">
                         <div class="col-sm-5">
+<<<<<<< HEAD
                             <img src="{% static 'img/dynasty/chutang.jpg' %}" class="img-responsive" alt="">
+=======
+                            <img src="#" class="img-responsive" alt="">
+>>>>>>> 637d9f7ebb5d266229eb15e9f44214cfd7839180
                         </div>
                         <div class="col-sm-7">
                             <h3 class="top-zero">风神初振初唐诗</h3>
@@ -130,6 +134,7 @@
                 <div class="portfolio-info">
                     <h2>春江花月</h2>
                 </div>
+<<<<<<< HEAD
                 <div class="col-xs-6 col-sm-4 col-md-3 portfolio-item branded folio">
                     <div class="portfolio-wrapper">
                         <div class="portfolio-single">
@@ -139,6 +144,8 @@
                         </div>
                     </div>
                 </div>
+=======
+>>>>>>> 637d9f7ebb5d266229eb15e9f44214cfd7839180
             </div>
         </div>
     </div>
@@ -162,6 +169,7 @@
                     </div>
                 </div>
 
+<<<<<<< HEAD
                 {% for poem in poems %}
                     {% if not forloop.counter0|divisibleby:"2" %}
                         <div id="poet_container" class="poet_container">
@@ -172,6 +180,8 @@
                     {% endif %}
                 {% endfor %}
 
+=======
+>>>>>>> 637d9f7ebb5d266229eb15e9f44214cfd7839180
                 <div id="poet_container" class="poet_container">
                     <p id="poet_title">和晋陵陆丞早春游望</p>
                     <p id="poet_name" class="poet_name">杜审言</p>
@@ -182,6 +192,11 @@
                         <p>忽闻歌古调，归思欲沾巾。</p>
                     </div>
                 </div>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 637d9f7ebb5d266229eb15e9f44214cfd7839180
             </div>
         </div>
     </div>
@@ -193,6 +208,57 @@
 <script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 
+<<<<<<< HEAD
+=======
+<script>
+    function createNewPoetContainer() {
+        // 创建poet_container  
+        var newContainer = document.createElement('div');
+        newContainer.className = 'poet_container';
+
+        // 创建poet_title
+        var newTitle = document.createElement('p');
+        newTitle.className = 'poet_title';
+        newTitle.textContent = '新的诗歌标题'; // 这里可以随机生成或从服务器获取  
+        newContainer.appendChild(newTitle);
+
+        // 创建poet_name  
+        var newName = document.createElement('p');
+        newName.className = 'poet_name';
+        newName.textContent = '新的诗人名字'; // 这里可以随机生成或从服务器获取  
+        newContainer.appendChild(newName);
+
+        // 创建并添加新的诗歌内容  
+        var newPoem = document.createElement('div');
+        newPoem.className = 'poem';
+
+        // 假设我们有三行诗歌  
+        // for (var i = 1; i <= 3; i++) {
+        //     var newPoemLine = document.createElement('p');
+        //     newPoemLine.textContent = '新的诗歌行 ' + i; // 这里可以随机生成或从服务器获取  
+        //     newPoem.appendChild(newPoemLine);
+        // }
+
+        var newPoemLine = document.createElement('p');
+        newPoemLine.textContent = '诗歌内容 '; // 这里可以随机生成或从服务器获取
+        newPoem.appendChild(newPoemLine);
+
+        newContainer.appendChild(newPoem);
+
+        document.body.appendChild(newContainer);
+    }
+
+    // 监听滚动事件  
+    window.addEventListener('scroll', function () {
+        // 当用户滚动到接近页面底部时（设置了一个阈值）  
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
+
+            createNewPoetContainer();
+        }
+    });
+</script>
+
+>>>>>>> 637d9f7ebb5d266229eb15e9f44214cfd7839180
 </body>
 
 </html>

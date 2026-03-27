@@ -58,8 +58,12 @@ h1 {
 }
 
 h2 {
+<<<<<<< HEAD
   font-size: 1.2em;
   margin-top: 50px;
+=======
+  font-size: 24px;
+>>>>>>> 637d9f7ebb5d266229eb15e9f44214cfd7839180
   color: #686868;
 }
 
@@ -127,7 +131,11 @@ h3 {
 }
 
 .padding-top {
+<<<<<<< HEAD
   padding-top: 20px;
+=======
+  padding-top: 90px;
+>>>>>>> 637d9f7ebb5d266229eb15e9f44214cfd7839180
 }
 
 .padding-right {

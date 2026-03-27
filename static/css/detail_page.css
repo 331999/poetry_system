@@ -1,0 +1,80 @@
+body {
+    background: rgb(211, 214, 217);
+}
+
+.detail_page_container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 左侧 */
+.detail_page_left {
+    width: 300px;
+    height: auto;
+    /* border: 2px solid black; */
+    margin-top: 2em;
+}
+
+.detail_page_left_nav_container {
+    width: auto;
+    height: 150px;
+    background: #f8f9fa;
+    border: solid #7ba7ff;
+    margin: 1em 1.5em 0 1.5em;
+}
+
+.left_nav_name {
+    padding: 5px 0 0 20px;
+}
+
+/* 中间 */
+.detail_page {
+    width: 1100px;
+    height: 1000px;
+    justify-content: space-between;
+    /* border: 2px solid black; */
+    margin: 1em 1em 0 1em;
+    background-color: #f8f9fa;
+}
+
+.detail_page_middle_container {
+    width: 960px;
+    height: 1000px;
+    display: block;
+    margin: auto;
+}
+
+.firstHeading {
+    width: 100%;
+    height: 50px;
+    display: block;
+    margin: 0.25em 0 0.5em;
+    border-bottom: solid 4px #3366cc;
+    padding: 10px 20px 5px 20px;
+}
+
+.product {
+    width: 350px;
+    height: 400px;
+    background-color: rgb(210, 244, 255);
+}
+
+/* 右侧 */
+.detail_page_right {
+    width: 300px;
+    height: auto;
+    /* border: 2px solid black; */
+    margin-top: 2em;
+}
+
+.detail_page_right_nav_container {
+    width: auto;
+    height: 150px;
+    background: #f8f9fa;
+    border: solid #7ba7ff;
+    margin: 1em 1.5em 0 1.5em;
+}
+
+.right_nav_name {
+    padding: 5px 0 0 20px;
+}

@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>初唐诗</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/prettyPhoto.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+    <script type="text/javascript" src="{% static 'js/main.min.js' %}?t=1"></script>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/dynasty_detail.css' %}" rel="stylesheet">
+
+</head>
+
+
+<body>
+<header id="header">
+    <div class="navbar navbar-inverse" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="index.html">
+                    <h1><img src="{% static 'img/logo.png' %}" alt="logo"></h1>
+                </a>
+
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="{% url 'index' %}">首页</a></li>
+                    <li class="dropdown"><a href="#">朝代 <i class="fa fa-angle-down"></i></a>
+                        <ul role="menu" class="sub-menu">
+                            <li class="dropdown"><a href="{% url 'dynasty' %}">唐代</a>
+
+                            </li>
+                            <li class="dropdown"><a href="#">宋代<i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="wudai.html">展苞初放五代词</a></li>
+                                    <li><a href="beisong1.html">格高韵远北宋词（一）</a></li>
+                                    <li><a href="beisong2.html">格高韵远北宋词（二）</a></li>
+                                    <li><a href="nansong.html">极其工变南宋词</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#">辽代<i class="fa fa-angle-down"></i></a></li>
+                            <li class="dropdown"><a href="#">金代<i class="fa fa-angle-down"></i></a></li>
+                            <li class="dropdown"><a href="#">元代<i class="fa fa-angle-down"></i></a></li>
+                            <li class="dropdown"><a href="#">明代<i class="fa fa-angle-down"></i></a></li>
+                            <li class="dropdown"><a href="#">清代<i class="fa fa-angle-down"></i></a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#">文人骚客 <i class="fa fa-angle-down"></i></a>
+                        <ul role="menu" class="sub-menu">
+                           <li><a href="{% url 'libai' %}">李白</a></li>
+                            <li><a href="{% url 'dufu' %}">杜甫</a></li>
+                            <li><a href="{% url 'dongpo' %}">东坡</a></li>
+                            <li><a href="{% url 'jiaxuan' %}">稼轩</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'write:selfWrite' %}">挥毫泼墨</a></li>
+                    <li><a href="{% url 'discuss' %}">推心置腹</a></li>
+                    <li><a href="{% url 'question:find' %}">孰能无惑</a></li>
+                </ul>
+            </div>
+
+            <div class="search">
+                <form role="form">
+                    <i class="fa fa-search"></i>
+                    <div class="field-toggle">
+                        <input type="text" class="search-form" autocomplete="off" placeholder="全站搜索">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="page-breadcrumb">
+    <div class="vertical-center sun">
+        <div class="container">
+            <div class="row">
+                <div class="action">
+                    <div class="col-sm-12">
+                        <h1 class="title">风神初振初唐诗</h1>
+                        <p>诗坛基本还是笼罩在南朝糜艳雕琢的宫体诗风之下,南朝的浮艳和北朝的刚劲并未合而为一</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="company-information" class="padding-top">
+    <div class="container">
+        <div class="row">
+            <div class="about-us">
+                <div class="col-sm-7 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms">
+                    <h2 class="bold">时代特色</h2>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <img src="{% static 'img/aboutus/chutang1.png' %}" class="img-responsive" alt="">
+                        </div>
+                        <div class="col-sm-7">
+                            <h3 class="top-zero">风神初振初唐诗</h3>
+                            <p>
+                                隋和唐初的诗歌继续着南朝的宫廷传统，大部分写作于首都或者秦王府的文学馆里。创作以一种社交活动的方式出现，其中题目、措辞、结构和场合都受到严格限制，精英们比赛看谁能够最迅速地完成设定主题和押韵的诗，获胜者得到奖励，而最慢的那个支付罚金。诗歌创作的主题或是模仿有固定模式的乐府诗，或是赞扬廷臣日常生活中的物品或者某一特定事件。用词是有限制的，偏好典故，而日常用语的使用则被视为是粗鄙的。修饰部分更喜欢简明和间接的示意而非直率的叙述
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h2>春江花月</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="map-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-header">作品赏析</h2>
+            </div>
+            <div class="col-md-6">
+                <div id="poet_container" class="poet_container">
+                    <p id="poet_title">和晋陵陆丞早春游望</p>
+                    <p id="poet_name" class="poet_name">杜审言</p>
+                    <div id="poet">
+                        <p>独有宦游人，偏惊物候新。</p>
+                        <p>云霞出海曙，梅柳渡江春。</p>
+                        <p>淑气催黄鸟，晴光转绿蘋。</p>
+                        <p>忽闻歌古调，归思欲沾巾。</p>
+                    </div>
+                </div>
+                <div id="poet_container" class="poet_container">
+                    <p id="poet_title">和晋陵陆丞早春游望</p>
+                    <p id="poet_name" class="poet_name">杜审言</p>
+                    <div id="poet">
+                        <p>独有宦游人，偏惊物候新。</p>
+                        <p>云霞出海曙，梅柳渡江春。</p>
+                        <p>淑气催黄鸟，晴光转绿蘋。</p>
+                        <p>忽闻歌古调，归思欲沾巾。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/dynasty_detail.js' %}"></script>
+</body>
+</html>

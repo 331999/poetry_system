@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>主贴-回帖</title>
+    <link rel="stylesheet" href="{% static 'css/navigation bar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/common.css' %}">
+    <link rel="stylesheet" href="{% static 'css/post_detail.css' %}">
+</head>
+
+<body>
+
+<div class="navigation_bar">
+    <div class="left-logo">
+        <div class="logo"><img src="{% static 'img/animal_logo.img' %}" width="45"></div>
+        <p>论坛</p>
+    </div>
+
+    <div class="right-function">
+        <a href="{% url 'index' %}">主页</a>
+        <a href="#" target="">用户</a>
+        <a href="{% url 'users:login' %}" target="">注销</a>
+    </div>
+</div>
+
+<button class="backToHomeBtn" id="backToHomeBtn">
+    <a href="{% url 'index' %}"><img src="{% static 'img/loginRegister/backToHome.webp' %}" alt="返回首页"
+                                     title="返回首页" class="BtnImg"></a>
+</button>
+
+<div class="main_body">
+    <div class="individual_center">
+        <div class="avatar">
+            <img src="{% static 'img/android.img' %}" alt="" width="120">
+        </div>
+        <p>爱干饭的猿</p>
+        <div>男</div>
+        <div>软件开发工程师</div>
+
+        <div class="rank_information">
+            <div>
+                <div>积分</div>
+                <div>10</div>
+            </div>
+            <div>
+                <div>等级</div>
+                <div>1</div>
+            </div>
+        </div>
+    </div>
+    <div class="block_list">
+        <ol>
+            <li>
+                <div class="plate_information">
+                    <h3 class="plate_name">他拾到了遗落凡间的信伐。</h3>
+                    <p class="主贴时间">2022-06-05</p>
+
+                    <div class="moderator">贴主: <span class="moderator_name">爱干饭的猿</span></div>
+                    <p class="plate_specification">
+                        在这个世界上，一个好友，可能与他作对而变成敌人;一个用慈爱所培养起来的儿女，可能变得不忠不孝;一个人所拥有的金钱可能会在最需要的时候插翅飞走。但在这个世界上，我们仍拥有一个毫不自私的，永不忘恩复义的朋友，那便是他的狗。
+                    </p>
+                    <p class="plate_specification">
+                        他由记得，当他还是个孩子的时候，在养了只小狗的同时，种了一棵樱桃树。而此时，树正长的旺盛。天上烈火在水坝中烧着，空中鸟雀在湖水中游着，光穿过樱桃树的叶片照在树上蝉鸣着，吵得狗不断翻着身着。他刚从学校回来，还没见它，便己听到它的犬吠，他走到不远处，便见到那只狗向他扑来，但是一条铁链的却限制了他的动作，只得努力的叫着。他再走近，那狗又蹦起来，前脚不注意踩到他的衣服上。他急忙躲窜，但它只当是与他之间的玩耍。他身受一脚却也不碍事，用湿布一擦即可去掉污泥。那年夏天，每次他回到老家，它都会如此迎接他。
+                    </p>
+
+                    <div class="click">
+                        <div class="num">
+                            <div>点击次数</div>
+                            <div>100</div>
+                        </div>
+                        <div>
+                            <div>回复次数</div>
+                            <div>10</div>
+                        </div>
+                    </div>
+
+                </div>
+            </li>
+            <li>
+                <div class="plate_information">
+                    <h3 class="plate_name">回帖</h3>
+                    <p class="主贴时间">2022-06-05</p>
+
+                    <div class="moderator">回帖: <span class="moderator_name">爱干饭的猿</span></div>
+                    <p class="plate_specification">
+                        自你离开以后，从此就丢掉了笑颜。等待，在这春暖花开的季节，听候鸟南归，看春花烂漫。路漫长，却依然望不到心中那抹湛蓝。一望无垠的天际，呈现灰蒙蒙一片，荒凉了心里所有的期许和祈盼!</p>
+
+                    <div class="click">
+                        <div class="num">
+                            <div>点击次数</div>
+                            <div>100</div>
+                        </div>
+                    </div>
+
+                </div>
+            </li>
+            <li>
+                <div class="plate_information">
+                    <h3 class="plate_name">回帖</h3>
+                    <p class="主贴时间">2022-06-05</p>
+
+                    <div class="moderator">回帖: <span class="moderator_name">爱干饭的猿</span></div>
+                    <p class="plate_specification">
+                        人的一生里会遇到的痛苦太多了。而支撑着我们走下去的，大概就是，平凡生活里的一点点琐碎而渺小的快乐。</p>
+
+                    <div class="click">
+                        <div class="num">
+                            <div>点击次数</div>
+                            <div>100</div>
+                        </div>
+                    </div>
+
+                </div>
+            </li>
+            <li>
+                <div class="plate_information">
+                    <h3 class="plate_name">回帖</h3>
+                    <p class="主贴时间">2022-06-05</p>
+
+                    <div class="moderator">回帖: <span class="moderator_name">爱干饭的猿</span></div>
+                    <p class="plate_specification">遗憾千万种，各人皆不同
+                        。伤口不管有多重，总有痊愈的一天。但遗憾不一样，它会跟随你直到生命终结。</p>
+
+                    <div class="click">
+                        <div class="num">
+                            <div>点击次数</div>
+                            <div>100</div>
+                        </div>
+                    </div>
+
+                </div>
+            </li>
+
+        </ol>
+        <p></p>
+        <div>
+            回帖
+            <input type="text" placeholder="在这里写回帖" id="title">
+            <button id="submit">发布回帖</button>
+        </div>
+
+    </div>
+</div>
+
+</body>
+
+</html>

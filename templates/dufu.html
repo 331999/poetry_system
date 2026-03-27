@@ -1,0 +1,243 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>杜甫诗</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+
+
+</head><!--/head-->
+
+<body>
+<header id="header">
+    <div class="container">
+        <div class="row"></div>
+    </div>
+    <div class="navbar navbar-inverse" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    <h1><img src="{% static 'img/logo.png' %}" alt="logo"></h1>
+                </a>
+
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="{% url 'index' %}">首页</a></li>
+                    <li class="dropdown"><a href="#">朝代 <i class="fa fa-angle-down"></i></a>
+                        <ul role="menu" class="sub-menu">
+                            <li class="dropdown"><a href="#">唐代<i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{% url 'chutang' %}">风神初振初唐诗</a></li>
+                                    <li><a href="{% url 'shengtang' %}">律骨兼备盛唐诗</a></li>
+                                    <li><a href="{% url 'wantang' %}">创新求变中唐诗</a></li>
+                                    <li><a href="{% url 'zhongtang' %}">诗国余晖晚唐诗</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#">宋代<i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{% url 'wudai' %}">展苞初放五代词</a></li>
+                                    <li><a href="{% url 'beisong1' %}">格高韵远北宋词（一）</a></li>
+                                    <li><a href="{% url 'beisong2' %}">格高韵远北宋词（二）</a></li>
+                                    <li><a href="{% url 'nansong' %}">极其工变南宋词</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#">辽代<i class="fa fa-angle-down"></i></a></li>
+                            <li class="dropdown"><a href="#">金代<i class="fa fa-angle-down"></i></a></li>
+                            <li class="dropdown"><a href="#">元代<i class="fa fa-angle-down"></i></a></li>
+                            <li class="dropdown"><a href="#">明代<i class="fa fa-angle-down"></i></a></li>
+                            <li class="dropdown"><a href="#">清代<i class="fa fa-angle-down"></i></a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#">文人骚客 <i class="fa fa-angle-down"></i></a>
+                        <ul role="menu" class="sub-menu">
+                            <li><a href="{% url 'libai' %}">李白</a></li>
+                            <li><a href="{% url 'dufu' %}">杜甫</a></li>
+                            <li><a href="{% url 'dongpo' %}">东坡</a></li>
+                            <li><a href="{% url 'jiaxuan' %}">稼轩</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'write:selfWrite' %}">挥毫泼墨</a></li>
+                    <li><a href="{% url 'discuss' %}">推心置腹</a></li>
+                    <li><a href="{% url 'question:find' %}">孰能无惑</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<!--/#header-->
+
+<section id="page-breadcrumb">
+    <div class="vertical-center sun">
+        <div class="container">
+            <div class="row">
+                <div class="action">
+                    <div class="col-sm-12">
+                        <h1 class="title">杜甫</h1>
+                        <p>
+                            杜甫（712年—770年），字子美，汉族，本襄阳人，后徙河南巩县。自号少陵野老，唐代伟大的现实主义诗人，与李白合称“李杜”。为了与另两位诗人李商隐与杜牧即“小李杜”区别，杜甫与李白又合称“大李杜”，杜甫也常被称为“老杜”。杜甫在中国古典诗歌中的影响非常深远，被后人称为“诗圣”，他的诗被称为“诗史”。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/#page-breadcrumb-->
+
+<section id="blog" class="padding-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="timeline-blog overflow padding-top">
+                <div class="timeline-date text-center">
+                    <a href="#" class="btn btn-common uppercase">少陵野老</a>
+                </div>
+                <div class="timeline-divider overflow padding-bottom">
+                    <div class="col-sm-6 padding-right arrow-right wow fadeInLeft" data-wow-duration="1000ms"
+                         data-wow-delay="300ms">
+                        <div class="single-blog timeline">
+                            <div class="single-blog-wrapper">
+                                <div class="post-thumb">
+                                    <img src="{% static 'img/blog/timeline/dufu1.jpg' %}" class="img-fluid" alt="">
+                                    <div class="post-overlay">
+                                        <span class="uppercase"><a href="#">旅夜<br><small>书怀</small></a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-content overflow">
+                                <h2 class="post-title bold"><a href="#">旅夜书怀</a></h2>
+                                <h3 class="post-author"><a href="#">杜甫</a></h3>
+                                <p>细草微风岸，危樯独夜舟。
+                                <p></p>星垂平野阔，月涌大江流。<p></p>名岂文章著，官应老病休。<p></p>
+                                飘飘何所似，天地一沙鸥。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 padding-left padding-top arrow-left wow fadeInRight"
+                         data-wow-duration="1000ms" data-wow-delay="300ms">
+                        <div class="single-blog timeline">
+                            <div class="single-blog-wrapper">
+                                <div class="post-thumb">
+                                    <img src="{% static 'img/blog/timeline/dufu2.jpg' %}" class="img-fluid" alt="">
+                                    <div class="post-overlay">
+                                        <span class="uppercase"><a href="#">咏怀<br><small>古迹</small></a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-content overflow">
+                                <h2 class="post-title bold"><a href="#">咏怀古迹（其三）_</a></h2>
+                                <h3 class="post-author"><a href="#">杜甫</a></h3>
+                                <p>群山万壑赴荆门，生长明妃尚有村。
+                                <p></p>一去紫台连朔漠，独留青冢向黄昏。<p></p>画图省识春风面，环珮空归夜月魂。<p></p>
+                                千载琵琶作胡语，分明怨恨曲中论。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 padding-right arrow-right wow fadeInLeft" data-wow-duration="1000ms"
+                         data-wow-delay="300ms">
+                        <div class="single-blog timeline">
+                            <div class="single-blog-wrapper">
+                                <div class="post-thumb">
+                                    <iframe height=498 width=510
+                                            src='http://player.youku.com/embed/XMzA5NzYwMzEwNA=='>
+                                        'allowfullscreen'>
+                                    </iframe>
+                                </div>
+                            </div>
+                            <div class="post-content overflow">
+                                <h2 class="post-title bold"><a href="#">茅屋为秋风所破歌</a></h2>
+                                <h3 class="post-author"><a href="#">杜甫</a></h3>
+                                <p>八月秋高风怒号，卷我屋上三重茅。茅飞渡江洒江郊，高者挂罥长林梢，下者飘转沉塘坳。
+                                <p></p>南村群童欺我老无力，忍能对面为盗贼。公然抱茅入竹去，唇焦口燥呼不得，归来倚杖自叹息。
+                                <p></p>
+                                俄顷风定云墨色，秋天漠漠向昏黑。布衾多年冷似铁，娇儿恶卧踏里裂。床头屋漏无干处，雨脚如麻未断绝。自经丧乱少睡眠，长夜沾湿何由彻！
+                                <p></p>
+                                安得广厦千万间，大庇天下寒士俱欢颜！风雨不动安如山。呜呼！何时眼前突兀见此屋，吾庐独破受冻死亦足！
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-blog overflow">
+                <div class="timeline-divider overflow padding-bottom">
+                    <div class="col-sm-6 padding-right arrow-right wow fadeInLeft" data-wow-duration="1000ms"
+                         data-wow-delay="300ms">
+                        <div class="single-blog timeline">
+                            <div class="single-blog-wrapper">
+                                <div class="post-thumb">
+                                    <img src="{% static 'img/blog/timeline/dufu3.jpg' %}" class="img-fluid" alt="">
+                                    <div class="post-overlay">
+                                        <span class="uppercase"><a href="#"> <br><small>冰车行</small></a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-content overflow">
+                                <h2 class="post-title bold"><a href="#">兵车行</a></h2>
+                                <h3 class="post-author"><a href="#">杜甫</a></h3>
+                                <p>车辚辚，马萧萧，行人弓箭各在腰。
+                                <p></p>爷娘妻子走相送，尘埃不见咸阳桥。<p></p>牵衣顿足拦道哭，哭声直上干云霄。<p></p>
+                                道旁过者问行人，行人但云点行频。<p></p>
+                                或从十五北防河，便至四十西营田。<p></p>去时里正与裹头，归来头白还戍边。<p></p>
+                                边庭流血成海水，武皇开边意未已。<p></p>
+                                君不闻汉家山东二百州，千村万落生荆杞。<p></p>纵有健妇把锄犁，禾生陇亩无东西。<p></p>
+                                况复秦兵耐苦战，被驱不异犬与鸡。<p></p>长者虽有问，役夫敢申恨？
+                                <p></p>且如今年冬，未休关西卒。<p></p>县官急索租，租税从何出？<p></p>信知生男恶，反是生女好。
+                                <p></p>生女犹得嫁比邻，生男埋没随百草。<p>
+                            </p>君不见，青海头，古来白骨无人收。<p></p>新鬼烦冤旧鬼哭，天阴雨湿声啾啾！
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 padding-left padding-top arrow-left wow fadeInRight"
+                         data-wow-duration="1000ms" data-wow-delay="300ms">
+                        <div class="single-blog timeline">
+                            <div class="single-blog-wrapper">
+                                <div class="post-thumb">
+                                    <img src="{% static 'img/blog/timeline/dufu4.jpg' %}" class="img-fluid" alt="">
+                                    <div class="post-overlay">
+                                        <span class="uppercase"><a href="#">客<br><small>至</small></a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="post-content overflow">
+                                <h2 class="post-title bold"><a href="#">客至</a></h2>
+                                <h3 class="post-author"><a href="#">杜甫</a></h3>
+                                <p>舍南舍北皆春水，但见群鸥日日来。
+                                <p></p>花径不曾缘客扫，蓬门今始为君开。<p></p>盘餐市远无兼味，樽酒家贫只旧醅。<p></p>
+                                肯与邻翁相对饮，隔篱呼取尽馀杯。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-date text-center">
+                    <a href="#" class="btn btn-common">返回顶部</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/#blog-->
+
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/lightbox.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

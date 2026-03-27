@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+<div class="profile-card">
+    <div class="card-header">
+        <div class="pic">
+            <img src="{% static 'img/earth.jpg' %}" alt="">
+        </div>
+        <div class="name" id="studentId">202231101237</div>
+        <div class="sm">
+            <a href="#" class="changePasswordBtn" id="changePasswordBtn">修改密码</a>
+            <a href="#" class="contact-btn">退出登录</a>
+
+            <form id="passwordForm" class="passwordForm" method="post" style="display: none;">
+                <label for="oldPassword">旧密码:</label>
+                <input type="password" id="oldPassword" required>
+                <span id="passwordSpan" aria-live="polite"></span>
+
+                <label for="newPassword">新密码:</label>
+                <input type="password" id="newPassword" required>
+                <span id="pwd1Span" aria-live="polite"></span>
+
+                <label for="repeatPassword">重复密码:</label>
+                <input type="password" id="repeatPassword" required>
+                <span id="pwd2Span" aria-live="polite"></span>
+
+                <button type="button" id="savePasswordBtn">保存修改</button>
+                <button type="button" id="cancelPasswordBtn">取消</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/personal.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot</title>
+    <link rel="stylesheet" href="{% static 'css/question.css' %}">
+</head>
+
+<script src="{% static 'js/axios-0.18.0.min.js' %}"></script>
+<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+<script src="{% static 'js/question.js' %}"></script>
+
+<body>
+
+<button class="backToHomeBtn" id="backToHomeBtn">
+    <a href="{% url 'index' %}"><img src="{% static 'img/loginRegister/backToHome.webp' %}" alt="返回首页"
+                                     title="返回首页" class="BtnImg"></a>
+</button>
+
+<div class="talk_con">
+    <div class="talk_show" id="words">
+        <div class="atalk">
+            <img src="{% static 'img/fuzi.jpg' %}" alt="MyBot Avatar" class="avatar">
+            <span>Hi，我是Bot～很高兴遇见你！</span>
+        </div>
+    </div>
+
+    <form method="post">
+        <div class="talk_input">
+            {% csrf_token %}
+            <input type="text" placeholder="快向我提问吧" class="talk_word" id="talkwords">
+            <input type="button" value="发送" class="talk_sub" id="talksub">
+        </div>
+    </form>
+</div>
+</body>
+</html>

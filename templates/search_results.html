@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>搜索结果 - 古诗词鉴赏网</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+</head>
+
+<body>
+<header id="header">
+    <div class="navbar navbar-inverse" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    <h1><img src="{% static 'img/logo.png' %}" alt="logo"></h1>
+                </a>
+
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="{% url 'index' %}">首页</a></li>
+                    <li class="dropdown"><a href="#">朝代 <i class="fa fa-angle-down"></i></a>
+                        <ul role="menu" class="sub-menu">
+                            <li class="dropdown"><a href="{% url 'dynasty' %}">唐代</a>
+                            <li class="dropdown"><a href="#">辽代<i class="fa fa-angle-down"></i></a></li>
+                            <li class="dropdown"><a href="#">金代<i class="fa fa-angle-down"></i></a></li>
+                            <li class="dropdown"><a href="#">元代<i class="fa fa-angle-down"></i></a></li>
+                            <li class="dropdown"><a href="#">明代<i class="fa fa-angle-down"></i></a></li>
+                            <li class="dropdown"><a href="#">清代<i class="fa fa-angle-down"></i></a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#">文人骚客 <i class="fa fa-angle-down"></i></a>
+                        <ul role="menu" class="sub-menu">
+                            <li><a href="{% url 'libai' %}">李白</a></li>
+                            <li><a href="{% url 'dufu' %}">杜甫</a></li>
+                            <li><a href="{% url 'dongpo' %}">东坡</a></li>
+                            <li><a href="{% url 'jiaxuan' %}">稼轩</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'write:selfWrite' %}">挥毫泼墨</a></li>
+                    <li><a href="{% url 'discuss' %}">推心置腹</a></li>
+                    <li><a href="{% url 'question:find' %}">孰能无惑</a></li>
+                </ul>
+            </div>
+
+            <div class="search">
+                <form action="{% url 'searchPoetry' %}" method="get" role="form">
+                    <i class="fa fa-search"></i>
+                    <div class="field-toggle">
+                        <input type="text" name="q" class="search-form" autocomplete="off" placeholder="全站搜索">
+                    </div>
+                    <button type="submit" class="search-btn" style="display: none;">搜索</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="login">
+            <a href="{% url 'users:login' %}">
+                <button id="loginBtn" class="loginBtn">登录</button>
+            </a>
+        </div>
+
+        <div class="personal">
+            <a href="{% url 'users:personal' %}">
+                <button id="personalBtn" class="personalBtn">个人中心</button>
+            </a>
+        </div>
+    </div>
+</header>
+
+<section id="search-results">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>搜索结果</h2>
+                {% if poems %}
+                    <ul class="list-unstyled">
+                        {% for poem in poems %}
+                            <li class="media">
+                                <div class="media-body">
+                                    <h4 class="media-heading">{{ poem.poetry_name }}</h4>
+                                    <p>作者：{{ poem.poet_name }}</p>
+                                    <p>{{ poem.poetry_info|truncatewords:30 }}</p>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="pagination-container">
+                        {% if page_obj.has_other_pages %}
+                            <nav>
+                                <ul class="pagination">
+                                    {% if page_obj.has_previous %}
+                                        <li><a href="?page={{ query }}&page={{ page_obj.previous_page_number }}">&laquo;
+                                            上一页</a></li>
+                                    {% else %}
+                                        <li class="disabled"><span>&laquo; 上一页</span></li>
+                                    {% endif %}
+                                    {% for num in page_obj.paginator.page_range %}
+                                        {% if page_obj.number == num %}
+                                            <li class="active"><span>{{ num }}</span></li>
+                                        {% else %}
+                                            <li><a href="?q={{ query }}&page={{ num }}">{{ num }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if page_obj.has_next %}
+                                        <li><a href="?q={{ query }}&page={{ page_obj.next_page_number }}">下一页
+                                            &raquo;</a></li>
+                                    {% else %}
+                                        <li class="disabled"><span>下一页 &raquo;</span></li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <p>没有找到与“{{ query }}”相关的结果。</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+<footer id="footer">
+    <!-- 底部内容 -->
+</footer>
+
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/lightbox.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

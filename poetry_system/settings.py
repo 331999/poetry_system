@@ -134,6 +134,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # 配置自定义模型类
 AUTH_USER_MODEL = 'users.User'
 
-# 配置前端提交表单没有带“ \ ”的问题
+# Media files configuration
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Session configuration
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 7  # 7 days
+
+# Login URL
+LOGIN_URL = '/users/login/'
+
+# 配置前端提交表单没有带” \ “的问题
 # APPEND_SLASH = False
 

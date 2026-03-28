@@ -11,7 +11,13 @@ urlpatterns = [
     path('login/', views.Login.as_view(), name='login'),
 
     # 用户退出
-    path('logout/', views.Logout.as_view(), name='logout'),
+    from django.urls import path, re_path
+from users import views
+
+from users.models import User, SECURITY_QUESTions
+
+
+app_name = 'users'
 
     # 检查用户名是否存在
     re_path(r'^username/(?P<username>\d{12})/count$', views.UsernameCountView.as_view(), name='check_username'),

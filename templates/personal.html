@@ -1,48 +1,130 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人中心</title>
+    <title>个人中心 - 古诗词鉴赏网</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/personal.css' %}">
 </head>
 
 <body>
-<div class="profile-card">
-    <div class="card-header">
-        <div class="pic">
-            <img src="{% static 'img/earth.jpg' %}" alt="">
+<div class="profile-container">
+    <div class="profile-card">
+        <div class="card-header">
+            <div class="pic">
+                {% if user.avatar %}
+                <img src="{{ user.avatar.url }}" alt="头像">
+                {% else %}
+                <img src="{% static 'img/default-avatar.png' %}" alt="默认头像">
+                {% endif %}
+            </div>
+            <div class="name">{{ user.nickname|default:user.username }}</div>
+            <div class="username">学号: {{ user.username }}</div>
+
+            <div class="actions">
+                <button class="action-btn" id="editProfileBtn">
+                    <i class="fas fa-edit"></i> 编辑资料
+                </button>
+                <button class="action-btn" id="changePasswordBtn">
+                    <i class="fas fa-key"></i> 修改密码
+                </button>
+                <button class="action-btn logout" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> 退出登录
+                </button>
+            </div>
         </div>
-        <div class="name" id="studentId">202231101237</div>
-        <div class="sm">
-            <a href="#" class="changePasswordBtn" id="changePasswordBtn">修改密码</a>
-            <a href="#" class="contact-btn">退出登录</a>
 
-            <form id="passwordForm" class="passwordForm" method="post" style="display: none;">
-                <label for="oldPassword">旧密码:</label>
-                <input type="password" id="oldPassword" required>
-                <span id="passwordSpan" aria-live="polite"></span>
+        <div class="card-body">
+            <div class="info-item">
+                <span class="label"><i class="fas fa-user"></i> 昵称</span>
+                <span class="value">{{ user.nickname|default:"未设置" }}</span>
+            </div>
+            <div class="info-item">
+                <span class="label"><i class="fas fa-info-circle"></i> 个人简介</span>
+                <span class="value">{{ user.bio|default:"这个人很懒，什么都没写~" }}</span>
+            </div>
+        </div>
+    </div>
+</div>
 
-                <label for="newPassword">新密码:</label>
-                <input type="password" id="newPassword" required>
-                <span id="pwd1Span" aria-live="polite"></span>
-
-                <label for="repeatPassword">重复密码:</label>
-                <input type="password" id="repeatPassword" required>
-                <span id="pwd2Span" aria-live="polite"></span>
-
-                <button type="button" id="savePasswordBtn">保存修改</button>
-                <button type="button" id="cancelPasswordBtn">取消</button>
+<!-- 编辑资料模态框 -->
+<div class="modal" id="editModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>编辑个人资料</h2>
+            <button class="close-btn" id="closeEditModal">&times;</button>
+        </div>
+        <form id="profileForm">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="nickname">昵称</label>
+                    <input type="text" id="nickname" name="nickname" value="{{ user.nickname }}"
+                           maxlength="50" placeholder="请输入昵称">
+                </div>
+                <div class="form-group">
+                    <label for="avatar">头像</label>
+                    <input type="file" id="avatar" name="avatar" accept="image/*">
+                    <div class="avatar-preview" id="avatarPreview"></div>
+                </div>
+                <div class="form-group">
+                    <label for="bio">个人简介</label>
+                    <textarea id="bio" name="bio" maxlength="500" rows="4"
+                              placeholder="介绍一下自己吧~">{{ user.bio }}</textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn" id="cancelEditBtn">取消</button>
+                    <button type="submit" class="save-btn">保存</button>
+                </div>
             </form>
         </div>
     </div>
 </div>
 
-<script src="{% static 'js/personal.js' %}"></script>
+<!-- 修改密码模态框 -->
+<div class="modal" id="passwordModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>修改密码</h2>
+                <button class="close-btn" id="closePasswordModal">&times;</button>
+        </div>
+        <form id="passwordForm">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="oldPassword">旧密码</label>
+                    <input type="password" id="oldPassword" name="old_password" required
+                           placeholder="请输入旧密码">
+                    <span id="oldPwdSpan" class="error-msg"></span>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">新密码</label>
+                    <input type="password" id="newPassword" name="new_password" required
+                           placeholder="8-20位，包含字母和数字">
+                    <span id="newPwdSpan" class="error-msg"></span>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">确认新密码</label>
+                    <input type="password" id="confirmPassword" name="new_password2" required
+                           placeholder="再次输入新密码">
+                    <span id="confirmSpan" class="error-msg"></span>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn" id="cancelPasswordBtn">取消</button>
+                    <button type="submit" class="save-btn">确认修改</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
+<!-- 返回首页按钮 -->
+<a href="{% url 'index' %}" class="back-home-btn">
+    <i class="fas fa-home"></i> 返回首页
+</a>
+
+<script src="{% static 'js/personal.js' %}"></script>
 </body>
 
 </html>

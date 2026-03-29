@@ -148,3 +148,4 @@ LOGIN_URL = '/users/login/'
 # 配置前端提交表单没有带” \ “的问题
 # APPEND_SLASH = False
 
+RUNSERVER_PORT = 4686

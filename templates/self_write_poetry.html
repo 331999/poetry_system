@@ -140,29 +140,21 @@
 
             <div id="video-container"></div><!--/#video-container-->
 
-            <div id="carousel-container">
+            <div id="carousel-container" style="width: 100%; max-width: 800px; margin: 0 auto;">
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators visible-xs">
-                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        {% for image in carousel_images %}
+                            <li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
+                        {% endfor %}
                     </ol>
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <img src="{% static 'img/1.png' %}" alt="">
-                            <div class="carousel-caption">
+                    <div class="carousel-inner" style="width: 100%; height: 400px; overflow: hidden;">
+                        {% for image in carousel_images %}
+                            <div class="item {% if forloop.first %}active{% endif %}" style="width: 100%; height: 100%;">
+                                <img src="{% static image %}" alt="轮播图{{ forloop.counter }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                <div class="carousel-caption">
+                                </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <img src="{% static 'img/3.png' %}" alt="">
-                            <div class="carousel-caption">
-                            </div>
-                        </div>
-                        <div class="item">
-                            <img src="{% static 'img/2.png' %}" alt="">
-                            <div class="carousel-caption">
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                     <a class="left carousel-control hidden-xs" href="#carousel-example-generic" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left"></span>
@@ -181,24 +173,25 @@
                         <h2></h2>
                         <h2>雁过留声</h2>
                         <form id="main-contact-form" name="contact-form" method="post"
-                              action={% url 'write:selfWrite' %}
-                                      enctype="multipart/form-data">
+                              action="{% url 'write:selfWrite' %}" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="form-group">
-                                <input v-model="poet_name" name="poet_name" class="form-control"
-                                       required="required"
-                                       placeholder="作者名">
+                                <label>
+                                    <input type="text" v-model="poetry_name" name="poetry_name" class="form-control"
+                                           required="required" placeholder="古诗名">
+                                </label>
                             </div>
                             <div class="form-group">
-                                <input type="text" v-model="poetry_name" name="poetry_name" class="form-control"
-                                       required="required"
-                                       placeholder="古诗名">
+                                <label>
+                                    <input v-model="poet_name" name="poet_name" class="form-control" required="required"
+                                           placeholder="作者名">
+                                </label>
                             </div>
-
                             <div class="form-group">
-                                <textarea name="message" v-model="poetry_content" id="poetry_content" required
-                                          class="form-control" rows="8"
-                                          placeholder="古诗内容"></textarea>
+                                <label for="poetry_content">
+                                    <textarea name="poetry_content" v-model="poetry_content" id="poetry_content"
+                                              required class="form-control" rows="8" placeholder="古诗内容"></textarea>
+                                </label>
                             </div>
                             <div class="form-group">
                                 <input type="submit" name="submit" class="btn btn-submit" value="提交我的作品">
@@ -210,60 +203,64 @@
                     <div class="col-md-6">
                         <h2 class="page-header">他山之石</h2>
                         <div class="testimonial">
-                            <div class="media">
-{#                                {% for poem in poems %}#}
-{#                                    <div class="media">#}
-{#                                        <div class="pull-left">#}
-{#                                            <a href="#"><img src="#" alt=""></a>#}
-{#                                        </div>#}
-{#                                        <div class="media-body">#}
-{#                                            <blockquote>#}
-{#                                                <p>{{ poem.poetry_name }}</p>#}
-{#                                                <p>{{ poem.poetry_content }}</p>#}
-{#                                            </blockquote>#}
-{#                                            <h3><a href="#"> {{ poem.poet_name }}</a></h3>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                {% endfor %}#}
-                            </div>
 
-                            <div class="media">
-                                <div class="pull-left">
-                                    <a href="#"><img src="#" alt=""></a>
+                            {% for poem in poems %}
+                                <div class="media"
+                                     style="margin-bottom: 30px; padding: 20px; background: #f9f9f9; border-radius: 5px;">
+                                    <div class="media-body">
+                                        <blockquote style="border-left: 4px solid #5a5a5a; padding-left: 15px;">
+                                            <h4 style="color: #333; margin-bottom: 10px;">
+                                                {% if "《" in poem.poetry_name and "》" in poem.poetry_name %}
+                                                    {{ poem.poetry_name }}
+                                                {% elif "《" not in poem.poetry_name and "》" in poem.poetry_name %}
+                                                    《{{ poem.poetry_name }}
+                                                {% elif "《" in poem.poetry_name and "》" not in poem.poetry_name %}
+                                                    {{ poem.poetry_name }}》
+                                                {% elif "《" not in poem.poetry_name and "》" not in poem.poetry_name %}
+                                                    《{{ poem.poetry_name }}》
+                                                {% endif %}
+                                            </h4>
+                                            <h5 style="color: #666; margin-bottom: 15px; font-weight: normal;">
+                                                <a href="#" style="color: #666;">{{ poem.poet_name }}</a>
+                                            </h5>
+                                            <div style="line-height: 2; color: #555; font-size: 15px; white-space: pre-line;">{{ poem.poetry_content }}</div>
+                                        </blockquote>
+                                    </div>
                                 </div>
+                            {% endfor %}
+
+                            <div class="media"
+                                 style="margin-bottom: 30px; padding: 20px; background: #f9f9f9; border-radius: 5px;">
                                 <div class="media-body">
-                                    <blockquote>
-                                        <p>江城子·空山新雨</p>
-                                        <p>
-                                            始觉风雨任情长，笑语迎，意深藏。贪欢笙醉，歌尽舞湿裳。不解彩云自何方，凝落晖，俱满堂。</p>
-                                        <p>
-                                            未申平分春色往，春红逝，麦出芒。微醺香销，梦深呓语狂。自古游子诉离殇，新雨后，嵩山香。</p>
+                                    <blockquote style="border-left: 4px solid #5a5a5a; padding-left: 15px;">
+                                        <h4 style="color: #333; margin-bottom: 10px;">《江城子·空山新雨》</h4>
+                                        <h5 style="color: #666; margin-bottom: 15px; font-weight: normal;">
+                                            <a href="#" style="color: #666;">{{ poem.poet_name }}</a>
+                                        </h5>
+                                        <div style="line-height: 2; color: #555; font-size: 15px; white-space: pre-line;">
+                                            始觉风雨任情长，笑语迎，意深藏。贪欢笙醉，歌尽舞湿裳。不解彩云自何方，凝落晖，俱满堂。未申平分春色往，春红逝，麦出芒。微醺香销，梦深呓语狂。自古游子诉离殇，新雨后，嵩山香。
+                                        </div>
                                     </blockquote>
-                                    <h3><a href="#">-熠睿fly</a></h3>
                                 </div>
                             </div>
-
-                            <div class="media">
-                                <div class="pull-left">
-                                    <a href="#"><img src="#" alt=""></a>
-                                </div>
+                            <div class="media"
+                                 style="margin-bottom: 30px; padding: 20px; background: #f9f9f9; border-radius: 5px;">
                                 <div class="media-body">
-                                    <blockquote>
-                                        <p>无题</p>
-                                        <p>廿三残月夜寂寥，</p>
-                                        <p>信书片语时磨销。</p>
-                                        <p>喜见欢士萦堂满，</p>
-                                        <p>吾孤亦足问天骄。</p>
+                                    <blockquote style="border-left: 4px solid #5a5a5a; padding-left: 15px;">
+                                        <h4 style="color: #333; margin-bottom: 10px;">《无题》</h4>
+                                        <h5 style="color: #666; margin-bottom: 15px; font-weight: normal;">
+                                            <a href="#" style="color: #666;">佚名</a>
+                                        </h5>
+                                        <div style="line-height: 2; color: #555; font-size: 15px; white-space: pre-line;">
+                                            廿三残月夜寂寥，信书片语时磨销。喜见欢士萦堂满，吾孤亦足问天骄。
+                                        </div>
                                     </blockquote>
-                                    <h3><a href="">-佚名</a></h3>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="padding"></div>
         </div>
     </section>
 </div>

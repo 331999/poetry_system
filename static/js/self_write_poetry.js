@@ -16,25 +16,39 @@ let vm = new Vue({
             formData.append('poetry_name', this.poetry_name);
             formData.append('poet_name', this.poet_name);
             formData.append('poetry_content', this.poetry_content);
-            console.log(formData)
+            
+            console.log('提交的数据:', {
+                poetry_name: this.poetry_name,
+                poet_name: this.poet_name,
+                poetry_content: this.poetry_content
+            });
 
-
-            // 使用 fetch 发送数据到后端
-            fetch('/write/selfWrite/', {
-                method: 'POST',
-                body: formData,
+            // 使用 axios 发送数据到后端
+            axios.post('/write/selfWrite/', formData, {
                 headers: {
-                    'X-CSRFToken': this.csrf_token // 如果你的网站使用 CSRF 令牌，你需要从 cookie 中获取它并添加到请求头
+                    'X-CSRFToken': this.csrf_token,
+                    'X-Requested-With': 'XMLHttpRequest'
                 }
             })
-                .then(data => {
-                    // 处理响应数据
-                    // console.log(data);
-                    // alert('作品提交成功！');
+                .then(response => {
+                    console.log('响应数据:', response.data);
+                    if (response.data.success) {
+                        // 提交成功后刷新页面，加载新提交的诗词
+                        alert('作品提交成功！');
+                        window.location.reload();
+                    } else {
+                        // 显示错误信息
+                        console.error('表单验证失败:', response.data.errors);
+                        alert('提交失败，请检查输入内容！');
+                    }
                 })
                 .catch(error => {
                     // 处理错误
                     console.error('提交失败:', error);
+                    if (error.response) {
+                        console.error('错误响应:', error.response.data);
+                    }
+                    alert('提交失败，请重试！');
                 });
         }
     },

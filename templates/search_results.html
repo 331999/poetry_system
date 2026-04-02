@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="utf-8">
@@ -13,6 +13,7 @@
     <link href="{% static 'css/animate.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
     <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+    <link href="{% static 'css/user-menu.css' %}" rel="stylesheet">
 </head>
 
 <body>
@@ -70,16 +71,35 @@
             </div>
         </div>
 
-        <div class="login">
-            <a href="{% url 'users:login' %}">
-                <button id="loginBtn" class="loginBtn">登录</button>
-            </a>
-        </div>
-
-        <div class="personal">
-            <a href="{% url 'users:personal' %}">
-                <button id="personalBtn" class="personalBtn">个人中心</button>
-            </a>
+        <div class="header-right">
+            <button class="theme-toggle" id="themeToggle" title="切换主题">
+                <i class="fa fa-moon-o"></i>
+            </button>
+            {% if user.is_authenticated %}
+            <div class="user-menu dropdown">
+                <a href="#" class="user-avatar dropdown-toggle" data-toggle="dropdown">
+                    {% if user.avatar %}
+                    <img src="{{ user.avatar.url }}" alt="头像">
+                    {% else %}
+                    <div class="default-avatar">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    {% endif %}
+                    <span class="username">{{ user.username|default:"用户" }}</span>
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu user-dropdown">
+                    <li><a href="{% url 'users:profile' %}"><i class="fa fa-user"></i> 个人中心</a></li>
+                    <li><a href="{% url 'users:logout' %}"><i class="fa fa-sign-out"></i> 退出登录</a></li>
+                </ul>
+            </div>
+            {% else %}
+            <div class="user-menu">
+                <a href="{% url 'users:login' %}" class="btn-login">
+                    <i class="fa fa-user"></i> 登录
+                </a>
+            </div>
+            {% endif %}
         </div>
     </div>
 </header>
@@ -144,6 +164,7 @@
 <script type="text/javascript" src="{% static 'js/lightbox.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/theme-toggle.js' %}"></script>
 </body>
 
 </html>

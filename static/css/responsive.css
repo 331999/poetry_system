@@ -40,6 +40,42 @@
 
 .slide-decorations {
   position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 20px 0;
+}
+
+.slide-decorations img {
+  position: absolute;
+  transition: all 0.3s ease;
+}
+
+.slide-decorations img:hover {
+  transform: scale(1.1);
+  z-index: 10;
+}
+
+.slider-sun {
+  right: 10%;
+  top: 5%;
+  width: 80px;
+  animation: float 6s ease-in-out infinite;
+}
+
+.slider-birds1 {
+  left: 15%;
+  top: 25%;
+  width: 60px;
+  animation: float 8s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.slider-birds2 {
+  left: 45%;
+  top: 15%;
+  width: 70px;
+  animation: float 7s ease-in-out infinite;
+  animation-delay: 1s;
 }
 
 /*md only*/
@@ -131,18 +167,51 @@
 
 .slide-decorations {
     position: relative;
+    width: 100%;
+    height: 300px;
+    margin: 20px 0;
+}
+
+.slide-decorations img {
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.slide-decorations img:hover {
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+.slider-sun {
+    right: 10%;
+    top: 5%;
+    width: 80px;
+    animation: float 6s ease-in-out infinite;
 }
 
 .slider-birds1 {
-    position: absolute;
-    left: 30px;
-    top: 20px;
+    left: 15%;
+    top: 25%;
+    width: 60px;
+    animation: float 8s ease-in-out infinite;
+    animation-delay: 0.5s;
 }
 
 .slider-birds2 {
-    position: absolute;
-    left: 60px;
-    top: 40px;
+    left: 45%;
+    top: 15%;
+    width: 70px;
+    animation: float 7s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
 }
 
   /*Pricing Table*/
@@ -315,18 +384,42 @@
 
 .slide-decorations {
     position: relative;
+    width: 100%;
+    height: 250px;
+    margin: 15px 0;
+}
+
+.slide-decorations img {
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.slide-decorations img:hover {
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+.slider-sun {
+    right: 15%;
+    top: 10%;
+    width: 70px;
+    animation: float 6s ease-in-out infinite;
 }
 
 .slider-birds1 {
-    position: absolute;
-    left: 10px;
-    top: 20px;
+    left: 20%;
+    top: 30%;
+    width: 50px;
+    animation: float 8s ease-in-out infinite;
+    animation-delay: 0.5s;
 }
 
 .slider-birds2 {
-    position: absolute;
-    left: 10px;
-    top: 40px;
+    left: 50%;
+    top: 20%;
+    width: 60px;
+    animation: float 7s ease-in-out infinite;
+    animation-delay: 1s;
 }
 
   /*Pricing Table*/

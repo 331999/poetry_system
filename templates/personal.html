@@ -7,10 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人中心 - 古诗词鉴赏网</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/personal.css' %}">
+    <script src="{% static 'js/axios-0.18.0.min.js' %}"></script>
 </head>
 
-<body>
+<body background="{% static 'img/loginRegister/background1.jpg' %}">
+<button class="backToHomeBtn" id="backToHomeBtn">
+    <a href="{% url 'index' %}">
+        <img src="{% static 'img/loginRegister/backToHome.webp' %}" alt="返回首页" title="返回首页"class="BtnImg">
+    </a>
+</button>
+
 <div class="profile-container">
     <div class="profile-card">
         <div class="card-header">
@@ -18,7 +26,7 @@
                 {% if user.avatar %}
                 <img src="{{ user.avatar.url }}" alt="头像">
                 {% else %}
-                <img src="{% static 'img/default-avatar.png' %}" alt="默认头像">
+                <img src="{% static 'img/default-avatar.jpg' %}" alt="默认头像">
                 {% endif %}
             </div>
             <div class="name">{{ user.nickname|default:user.username }}</div>
@@ -46,6 +54,58 @@
                 <span class="label"><i class="fas fa-info-circle"></i> 个人简介</span>
                 <span class="value">{{ user.bio|default:"这个人很懒，什么都没写~" }}</span>
             </div>
+            <div class="info-item">
+                <span class="label"><i class="fas fa-envelope"></i> 邮箱</span>
+                <span class="value">{{ user.email|default:"未设置" }}</span>
+            </div>
+            <div class="info-item">
+                <span class="label"><i class="fas fa-calendar"></i> 注册时间</span>
+                <span class="value">{{ user.date_joined|date:"Y-m-d H:i" }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 数据统计区域 -->
+    <div class="stats-section">
+        <h3>📊 数据统计</h3>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <i class="fas fa-pen-fancy stat-icon"></i>
+                <div class="stat-value" id="poemsCount">0</div>
+                <div class="stat-label">发表诗歌</div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-comments stat-icon"></i>
+                <div class="stat-value" id="topicsCount">0</div>
+                <div class="stat-label">发起话题</div>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-reply stat-icon"></i>
+                <div class="stat-value" id="repliesCount">0</div>
+                <div class="stat-label">参与回复</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 安全设置区域 -->
+    <div class="security-section">
+        <h3>🔒 安全设置</h3>
+        <div class="security-item">
+            <div class="security-label">
+                <i class="fas fa-shield-alt"></i>
+                当前安全问题
+            </div>
+            <div class="security-value" id="currentSecurityQuestion">
+                {{ user.get_security_question_display|default:"未设置" }}
+            </div>
+            <div class="security-actions">
+                <button type="button" class="security-btn" id="changeSecurityBtn">
+                    <i class="fas fa-key"></i> 修改安全问题
+                </button>
+                <button type="button" class="security-btn verify-btn" id="verifySecurityBtn">
+                    <i class="fas fa-check-circle"></i> 验证答案
+                </button>
+            </div>
         </div>
     </div>
 </div>
@@ -65,6 +125,12 @@
                            maxlength="50" placeholder="请输入昵称">
                 </div>
                 <div class="form-group">
+                    <label for="email">邮箱</label>
+                    <input type="email" id="email" name="email" value="{{ user.email|default:'' }}"
+                           placeholder="请输入邮箱地址">
+                    <span id="emailSpan" class="error-msg"></span>
+                </div>
+                <div class="form-group">
                     <label for="avatar">头像</label>
                     <input type="file" id="avatar" name="avatar" accept="image/*">
                     <div class="avatar-preview" id="avatarPreview"></div>
@@ -81,7 +147,6 @@
             </form>
         </div>
     </div>
-</div>
 
 <!-- 修改密码模态框 -->
 <div class="modal" id="passwordModal">
@@ -117,12 +182,68 @@
             </form>
         </div>
     </div>
+
+<!-- 修改安全问题模态框 -->
+<div class="modal" id="changeSecurityModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>修改安全问题</h2>
+            <button class="close-btn" id="closeChangeSecurityModal">&times;</button>
+        </div>
+        <form id="changeSecurityForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="newSecurityQuestion">新问题</label>
+                <select id="newSecurityQuestion" name="security_question" required>
+                    <option value="">请选择新问题</option>
+                    <option value="mother_name">您母亲的姓名是？</option>
+                    <option value="birth_city">您的出生城市是？</option>
+                    <option value="first_school">您的第一所学校名称是？</option>
+                    <option value="favorite_book">您最喜欢的书籍是？</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="securityAnswer">验证答案</label>
+                <input type="text" id="securityAnswer" name="security_answer" required
+                       placeholder="请输入当前问题的答案">
+                <span id="securityAnswerSpan" class="error-msg"></span>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="cancel-btn" id="cancelChangeSecurityBtn">取消</button>
+                <button type="submit" class="save-btn">确认修改</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 验证安全问题模态框 -->
+<div class="modal" id="verifySecurityModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>验证安全问题</h2>
+            <button class="close-btn" id="closeVerifySecurityModal">&times;</button>
+        </div>
+        <form id="verifySecurityForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="verifySecurityAnswer">当前问题的答案</label>
+                <input type="text" id="verifySecurityAnswer" name="security_answer" required
+                       placeholder="请输入答案">
+                <span id="verifySecurityAnswerSpan" class="error-msg"></span>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="cancel-btn" id="cancelVerifySecurityBtn">取消</button>
+                <button type="submit" class="save-btn verify-btn">验证</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 <!-- 返回首页按钮 -->
-<a href="{% url 'index' %}" class="back-home-btn">
+<!-- <a href="{% url 'index' %}" class="back-home-btn">
     <i class="fas fa-home"></i> 返回首页
-</a>
+</a> -->
+
 
 <script src="{% static 'js/personal.js' %}"></script>
 </body>

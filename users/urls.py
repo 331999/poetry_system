@@ -24,4 +24,13 @@ urlpatterns = [
 
     # 个人中心
     path('profile/', views.Profile.as_view(), name='profile'),
+
+    # 获取统计数据
+    path('profile/stats/', views.StatsView.as_view(), name='profile_stats'),
+
+    # 修改安全问题
+    path('update-security/', views.UpdateSecurityView.as_view(), name='update_security'),
+
+    # 验证安全问题
+    path('verify-security/', views.VerifySecurityView.as_view(), name='verify_security'),
 ]

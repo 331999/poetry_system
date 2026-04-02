@@ -13,6 +13,7 @@
     <link href="{% static 'css/animate.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
     <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+    <link href="{% static 'css/user-menu.css' %}" rel="stylesheet">
 
 </head>
 
@@ -20,6 +21,34 @@
 <header id="header">
     <div class="navbar navbar-inverse" role="banner">
         <div class="container">
+            <div class="header-left">
+                    {% if user.is_authenticated %}
+                    <div class="user-menu dropdown">
+                        <a href="#" class="user-avatar dropdown-toggle" data-toggle="dropdown">
+                            {% if user.avatar %}
+                            <img src="{{ user.avatar.url }}" alt="头像">
+                            {% else %}
+                            <div class="default-avatar">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            {% endif %}
+                            <span class="username">{{ user.username|default:"用户" }}</span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu user-dropdown">
+                            <li><a href="{% url 'users:profile' %}"><i class="fa fa-user"></i> 个人中心</a></li>
+                            <li><a href="#" id="themeToggleMenu"><i class="fa fa-moon-o"></i> 切换主题</a></li>
+                            <li><a href="{% url 'users:logout' %}"><i class="fa fa-sign-out"></i> 退出登录</a></li>
+                        </ul>
+                    </div>
+                    {% else %}
+                    <div class="user-menu">
+                        <a href="{% url 'users:login' %}" class="btn-login">
+                            <i class="fa fa-user"></i> 登录
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -36,7 +65,7 @@
                     <li class="active"><a href="{% url 'index' %}">首页</a></li>
                     <li class="dropdown"><a href="#">朝代 <i class="fa fa-angle-down"></i></a>
                         <ul role="menu" class="sub-menu">
-                            <li class="dropdown"><a href="{% url 'dynasty' %}">唐代<i class="fa fa-angle-down"></i></a>
+                            <li class="dropdown"><a href="#">唐代<i class="fa fa-angle-down"></i></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="{% url 'chutang' %}">风神初振初唐诗</a></li>
                                     <li><a href="{% url 'shengtang' %}">律骨兼备盛唐诗</a></li>
@@ -68,7 +97,6 @@
                         </ul>
                     </li>
                     <li><a href="{% url 'write:selfWrite' %}">挥毫泼墨</a></li>
-                    <li><a href="{% url 'discuss' %}">推心置腹</a></li>
                     <li><a href="{% url 'question:find' %}">孰能无惑</a></li>
                 </ul>
             </div>

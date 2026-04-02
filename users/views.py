@@ -142,17 +142,19 @@ class ResetPassword(View):
     """密码重置"""
 
     def get(self, request):
-        """获取用户的安全问题"""
+        """显示密码重置页面或获取用户的安全问题"""
         username = request.GET.get('username')
+        
+        # 如果没有 username 参数，渲染页面
         if not username:
-            return JsonResponse({'code': 400, 'msg': '请输入学号'}, status=400)
-
+            return render(request, 'resetPassword.html')
+        
+        # 有 username 参数，返回安全问题（AJAX 请求）
         try:
             user = User.objects.get(username=username)
             if not user.security_question:
                 return JsonResponse({'code': 400, 'msg': '该用户未设置安全问题'}, status=400)
 
-            # 返回安全问题文本
             question_text = dict(SECURITY_QUESTIONS).get(user.security_question, '')
             return JsonResponse({
                 'code': 200,
@@ -215,9 +217,94 @@ class Profile(LoginRequiredMixin, View):
                 'code': 200,
                 'msg': '个人信息更新成功',
                 'nickname': request.user.nickname,
+                'email': request.user.email,
                 'bio': request.user.bio,
             })
 
         errors = form.errors.get_json_data()
         first_error = list(errors.values())[0][0]['message'] if errors else '表单验证失败'
         return JsonResponse({'code': 400, 'msg': first_error}, status=400)
+
+
+class StatsView(LoginRequiredMixin, View):
+    """获取用户统计数据"""
+    login_url = '/users/login/'
+
+    def get(self, request):
+        """获取统计数据"""
+        user = request.user
+
+        # 查询发表的诗歌数量
+        poems_count = user.poet_info.count() if hasattr(user, 'poet_info') else 0
+
+        # 查询发起的话题数量
+        topics_count = 0
+        if hasattr(user, 'discuss_topic'):
+            topics_count = user.discuss_topic.filter(topic_author_id=user.id).count()
+
+        # 查询参与的回复数量
+        replies_count = 0
+        if hasattr(user, 'discuss_topic'):
+            # 获取用户发起的所有话题ID
+            user_topic_ids = user.discuss_topic.filter(topic_author_id=user.id).values_list('id', flat=True)
+            # 统计这些话题的回复数量
+            if user_topic_ids.exists():
+                replies_count = user.discuss_topic.filter(topic_author_id__in=user_topic_ids).count()
+
+        return JsonResponse({
+            'code': 200,
+            'msg': 'OK',
+            'poems_count': poems_count,
+            'topics_count': topics_count,
+            'replies_count': replies_count,
+        })
+
+
+class UpdateSecurityView(LoginRequiredMixin, View):
+    """更新安全问题"""
+    login_url = '/users/login/'
+
+    def post(self, request):
+        """更新安全问题"""
+        security_question = request.POST.get('security_question')
+        security_answer = request.POST.get('security_answer', '').lower().strip()
+
+        if not security_question:
+            return JsonResponse({'code': 400, 'msg': '请选择安全问题'}, status=400)
+
+        if not security_answer:
+            return JsonResponse({'code': 400, 'msg': '请输入当前答案'}, status=400)
+
+        # 验证答案
+        if request.user.security_answer.lower() != security_answer:
+            return JsonResponse({'code': 400, 'msg': '答案错误，请重试'}, status=400)
+
+        # 更新安全问题
+        request.user.security_question = security_question
+        request.user.save()
+
+        return JsonResponse({
+            'code': 200,
+            'msg': '安全问题修改成功',
+        })
+
+
+class VerifySecurityView(LoginRequiredMixin, View):
+    """验证安全问题"""
+    login_url = '/users/login/'
+
+    def post(self, request):
+        """验证答案"""
+        security_answer = request.POST.get('security_answer', '').lower().strip()
+
+        if not security_answer:
+            return JsonResponse({'code': 400, 'msg': '请输入答案'}, status=400)
+
+        # 验证答案
+        if request.user.security_answer.lower() != security_answer:
+            return JsonResponse({'code': 400, 'msg': '答案错误，请重试'}, status=400)
+
+        return JsonResponse({
+            'code': 200,
+            'msg': '答案验证成功',
+        })

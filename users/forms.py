@@ -191,9 +191,16 @@ class ResetPasswordForm(forms.Form):
 
 class ProfileForm(forms.ModelForm):
     """个人信息表单"""
+    email = forms.EmailField(
+        required=False,
+        error_messages={
+            'invalid': '请输入有效的邮箱地址',
+        }
+    )
+
     class Meta:
         model = User
-        fields = ['nickname', 'avatar', 'bio']
+        fields = ['nickname', 'email', 'avatar', 'bio']
         widgets = {
             'bio': forms.Textarea(attrs={'rows': 3, 'maxlength': 500}),
         }
@@ -201,3 +208,12 @@ class ProfileForm(forms.ModelForm):
             'nickname': {'max_length': '昵称最长50个字符'},
             'bio': {'max_length': '个人简介最长500个字符'},
         }
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email', '')
+        if email:
+            import re
+            pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+            if not re.match(pattern, email):
+                raise forms.ValidationError('请输入有效的邮箱地址，格式应为 xxx@xxx.xxx')
+        return email

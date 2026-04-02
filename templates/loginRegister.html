@@ -11,84 +11,85 @@
 </head>
 
 <body background="{% static 'img/loginRegister/background1.jpg' %}">
-<button class="backToHomeBtn" id="backToHomeBtn">
-    <a href="{% url 'index' %}"><img src="{% static 'img/loginRegister/backToHome.webp' %}" alt="返回首页"
-                                     title="返回首页" class="BtnImg"></a>
-</button>
+    <button class="backToHomeBtn" id="backToHomeBtn">
+        <a href="{% url 'index' %}"><img src="{% static 'img/loginRegister/backToHome.webp' %}" alt="返回首页" title="返回首页"
+                class="BtnImg"></a>
+    </button>
 
-<div class="container">
-    <div class="form-box">
-        <!-- 注册 -->
-        <div class="register-box hidden">
-            <form id="registerForm">
-                {% csrf_token %}
-                <h1>注册</h1>
-                <input type="text" id="register_studentId" placeholder="学号（12位数字）">
-                <span aria-live="polite" id="register_stuId"></span>
+    <div class="container">
+        <div class="form-box">
+            <!-- 注册 -->
+            <div class="register-box hidden">
+                <form id="registerForm">
+                    {% csrf_token %}
+                    <h1>注册</h1>
+                    <input type="text" id="register_studentId" placeholder="学号（12位数字）">
+                    <span aria-live="polite" id="register_stuId"></span>
 
-                <input type="password" placeholder="密码（8-20位，包含字母和数字）" id="pwd1">
-                <span id="pwd1Span" aria-live="polite"></span>
+                    <input type="password" placeholder="密码（8-20位，包含字母和数字）" id="pwd1">
+                    <span id="pwd1Span" aria-live="polite"></span>
 
-                <input type="password" placeholder="确认密码" id="pwd2">
-                <span id="pwd2Span" aria-live="polite"></span>
+                    <input type="password" placeholder="确认密码" id="pwd2">
+                    <span id="pwd2Span" aria-live="polite"></span>
 
-                <select id="securityQuestion" class="form-select">
-                    <option value="">请选择安全问题</option>
-                    {% for key, text in security_questions %}
-                    <option value="{{ key }}">{{ text }}</option>
-                    {% endfor %}
-                </select>
-                <span id="questionSpan" aria-live="polite"></span>
+                    <select id="securityQuestion" class="form-select">
+                        <option value="">请选择安全问题</option>
+                        {% for key, text in security_questions %}
+                        <option value="{{ key }}">{{ text }}</option>
+                        {% endfor %}
+                    </select>
+                    <span id="questionSpan" aria-live="polite"></span>
 
-                <input type="text" id="securityAnswer" placeholder="安全问题答案">
-                <span id="answerSpan" aria-live="polite"></span>
+                    <input type="text" id="securityAnswer" placeholder="安全问题答案">
+                    <span id="answerSpan" aria-live="polite"></span>
 
-                <button type="submit" id="submitButton1" disabled>注册</button>
-            </form>
+                    <button type="submit" id="submitButton1" disabled>注册</button>
+                </form>
+            </div>
+            <!-- 登录 -->
+            <div class="login-box">
+                <form id="loginForm">
+                    {% csrf_token %}
+                    <h1>登录</h1>
+                    <input type="text" id="login_studentId" placeholder="学号">
+                    <span aria-live="polite" id="login_stuId"></span>
+
+                    <input type="password" placeholder="密码" id="login_pwd">
+
+                    <div class="remember-me">
+                        <input type="checkbox" id="remembered" name="remembered">
+                        <label for="remembered">记住我（7天内免登录）</label>
+                    </div>
+
+                    <button type="submit" id="submitButton2">登录</button>
+
+                    <div class="forgot-password">
+                        <a href="{% url 'users:reset_password' %}">忘记密码？</a>
+                    </div>
+                </form>
+            </div>
         </div>
-        <!-- 登录 -->
-        <div class="login-box">
-            <form id="loginForm">
-                {% csrf_token %}
-                <h1>登录</h1>
-                <input type="text" id="login_studentId" placeholder="学号">
-                <span aria-live="polite" id="login_stuId"></span>
+        <div class="con-box left">
+            <h2>欢迎来到<span>古诗词鉴赏网</span></h2>
+            <p>快来结识你的<span>新朋友</span>吧</p>
 
-                <input type="password" placeholder="密码" id="login_pwd">
-
-                <div class="remember-me">
-                    <input type="checkbox" id="remembered" name="remembered">
-                    <label for="remembered">记住我（7天内免登录）</label>
-                </div>
-
-                <button type="submit" id="submitButton2">登录</button>
-
-                <div class="forgot-password">
-                    <a href="{% url 'users:reset_password' %}">忘记密码？</a>
-                </div>
-            </form>
+            <img src="{% static 'img/loginRegister/register1.png' %}">
+            <p>已有账号</p>
+            <button id="login">去登录</button>
+        </div>
+        <div class="con-box right">
+            <h2>欢迎来到<span>古诗词鉴赏网</span></h2>
+            <p>快来结识你的<span>新朋友</span>吧</p>
+            <img src="{% static 'img/loginRegister/login.png' %}">
+            <p>没有账号？</p>
+            <button id="register">去注册</button>
         </div>
     </div>
-    <div class="con-box left">
-        <h2>欢迎来到<span>古诗词鉴赏网</span></h2>
-        <p>快来结识你的<span>新朋友</span>吧</p>
 
-        <img src="{% static 'img/loginRegister/register1.png' %}">
-        <p>已有账号</p>
-        <button id="login">去登录</button>
-    </div>
-    <div class="con-box right">
-        <h2>欢迎来到<span>古诗词鉴赏网</span></h2>
-        <p>快来结识你的<span>新朋友</span>吧</p>
-        <img src="{% static 'img/loginRegister/login.png' %}">
-        <p>没有账号？</p>
-        <button id="register">去注册</button>
-    </div>
-</div>
-
-<script src="{% static 'js/loginRegister.js' %}"></script>
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="{% static 'js/loginRegister.js' %}"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 </body>
+
 </html>

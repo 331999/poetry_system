@@ -5,17 +5,12 @@
 }
 
 body {
-    /* 100%窗口高度 */
     height: 100vh;
-    /* 弹性布局 水平+垂直居中 */
     display: flex;
     justify-content: center;
     align-items: center;
-    /* 渐变背景 */
-    /*background: url("../img/loginRegister/background1.jpg") no-repeat;*/
     background-size: cover;
     background-position: center;
-    /* 图像居中显示 */
 }
 
 .backToHomeBtn {
@@ -33,21 +28,19 @@ body {
     background-color: transparent;
 }
 
-backToHomeBtn :active {
+#backToHomeBtn :active {
     transform: scale(0.9);
     /* 点击缩小按钮 */
 }
 
 .BtnImg {
     width: 100%;
-    /* 图像大小根据按钮大小调整 */
     height: auto;
     border-radius: 50%;
     display: block;
 }
 
 .container {
-    background-color: #91d8f1;
     width: 650px;
     height: 415px;
     border-radius: 5px;
@@ -55,7 +48,6 @@ backToHomeBtn :active {
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
     /* 相对定位 */
     position: relative;
-    background: transparent;
     background-color: rgba(206, 206, 206, 0.6);
     /* 白色背景，60% 透明度 */
     backdrop-filter: blur(10px);

@@ -1,0 +1,299 @@
+/*************************
+*******用户菜单样式******
+**************************/
+
+/* 头部右侧区域 */
+.header-left {
+    position: absolute;
+    top: 20px;
+    left: -220px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 1000;
+}
+
+/* 主题切换按钮 */
+.theme-toggle {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.05);
+    color: #333;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transform: rotate(20deg);
+}
+
+.theme-toggle i {
+    transition: all 0.3s ease;
+}
+
+/* 用户菜单 */
+.user-menu {
+    display: flex;
+    align-items: center;
+}
+
+/* 登录按钮 */
+.btn-login {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #abb5ec 0%, #da9298 100%);
+    color: #fff !important;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(192, 48, 53, 0.3);
+}
+
+.btn-login:hover {
+    background: linear-gradient(135deg, #b7daaa 0%, #8891cf 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(192, 48, 53, 0.4);
+    text-decoration: none;
+}
+
+.btn-login i {
+    font-size: 16px;
+}
+
+/* 用户头像区域 */
+.user-avatar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 15px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 25px;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.user-avatar:hover {
+    background: rgba(192, 48, 53, 0.1);
+    text-decoration: none;
+    color: #C03035;
+}
+
+.user-avatar img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #C03035;
+    object-fit: cover;
+}
+
+/* 默认头像样式（当图片加载失败或不存在时） */
+.user-avatar .default-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #C03035;
+    background: linear-gradient(135deg, #C03035 0%, #8B1E22 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 16px;
+}
+
+.user-avatar .username {
+    font-size: 14px;
+    font-weight: 500;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-avatar .fa-angle-down {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.user-avatar[aria-expanded="true"] .fa-angle-down {
+    transform: rotate(180deg);
+}
+
+/* 用户下拉菜单 */
+.user-dropdown {
+    min-width: 160px;
+    padding: 8px 0;
+    margin-top: 10px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    background: #fff;
+    animation: fadeInDown 0.3s ease;
+}
+
+.user-dropdown:before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #fff;
+}
+
+.user-dropdown li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    color: #333;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.user-dropdown li a:hover {
+    background: rgba(192, 48, 53, 0.1);
+    color: #C03035;
+}
+
+.user-dropdown li a i {
+    width: 18px;
+    text-align: center;
+    color: #888;
+}
+
+.user-dropdown li a:hover i {
+    color: #C03035;
+}
+
+/* 动画 */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*************************
+*******深色主题样式******
+**************************/
+
+[data-theme="dark"] {
+    --bg-color: #1a1a2e;
+    --text-color: #e8e8e8;
+    --card-bg: #16213e;
+    --border-color: #2d3748;
+}
+
+[data-theme="dark"] body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] #header .navbar {
+    background: var(--card-bg);
+}
+
+[data-theme="dark"] #header .navbar-nav.navbar-right > li a {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .theme-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    color: #f0e68c;
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .user-avatar {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .user-avatar:hover {
+    background: rgba(192, 48, 53, 0.2);
+}
+
+[data-theme="dark"] .user-dropdown {
+    background: var(--card-bg);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .user-dropdown:before {
+    border-bottom-color: var(--card-bg);
+}
+
+[data-theme="dark"] .user-dropdown li a {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .user-dropdown li a:hover {
+    background: rgba(192, 48, 53, 0.2);
+}
+
+[data-theme="dark"] .single-service {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3 {
+    color: var(--text-color);
+}
+
+/*************************
+*******响应式适配******
+**************************/
+
+@media (max-width: 768px) {
+    .header-right {
+        top: 15px;
+        left: 15px;
+        gap: 10px;
+    }
+
+    .theme-toggle {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+
+    .btn-login {
+        padding: 8px 15px;
+        font-size: 13px;
+    }
+
+    .user-avatar {
+        padding: 6px 12px;
+    }
+
+    .user-avatar .username {
+        display: none;
+    }
+
+    .user-dropdown {
+        right: 0;
+        left: auto;
+    }
+}

@@ -22,15 +22,15 @@
     <div class="navbar navbar-inverse" role="banner">
         <div class="container">
             <div class="header-left">
-                    {% if user.is_authenticated %}
+                {% if user.is_authenticated %}
                     <div class="user-menu dropdown">
                         <a href="#" class="user-avatar dropdown-toggle" data-toggle="dropdown">
                             {% if user.avatar %}
-                            <img src="{{ user.avatar.url }}" alt="头像">
+                                <img src="{{ user.avatar.url }}" alt="头像">
                             {% else %}
-                            <div class="default-avatar">
-                                <i class="fa fa-user"></i>
-                            </div>
+                                <div class="default-avatar">
+                                    <i class="fa fa-user"></i>
+                                </div>
                             {% endif %}
                             <span class="username">{{ user.username|default:"用户" }}</span>
                             <i class="fa fa-angle-down"></i>
@@ -41,14 +41,14 @@
                             <li><a href="{% url 'users:logout' %}"><i class="fa fa-sign-out"></i> 退出登录</a></li>
                         </ul>
                     </div>
-                    {% else %}
+                {% else %}
                     <div class="user-menu">
                         <a href="{% url 'users:login' %}" class="btn-login">
                             <i class="fa fa-user"></i> 登录
                         </a>
                     </div>
-                    {% endif %}
-                </div>
+                {% endif %}
+            </div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -148,10 +148,10 @@
                     <div class="portfolio-wrapper">
                         <div class="portfolio-single">
                             <div class="portfolio-thumb">
-                                <img src="{% static 'img/dynasty/wantang_shangshanzaoxing.jpg' %}" class="img-responsive" alt="">
+                                <img src="{% static 'img/dynasty/wantang_shangshanzaoxing.jpg' %}"
+                                     class="img-responsive" alt="">
                             </div>
-                                <img src="#" class="img-responsive" alt="">
-                            </div>
+                            <img src="#" class="img-responsive" alt="">
                         </div>
                     </div>
                 </div>
@@ -179,30 +179,30 @@
                     <div class="tab-pane fade active in" id="tab2-item1">
                         <p>江涵秋影雁初飞，与客携壶上翠微。
                         <p></p>尘世难逢开口笑，菊花须插满头归。<p></p>但将酩酊酬佳节，不用登临恨落晖。<p></p>
-                        古往今来只如此，牛山何必独沾衣。 </p>
+                        古往今来只如此，牛山何必独沾衣。
                     </div>
                     <div class="tab-pane fade" id="tab2-item2">
                         <p>青山隐隐水迢迢，秋尽江南草木凋。
-                        <p></p>二十四桥明月夜，玉人何处教吹箫。 </p>
+                        <p></p>二十四桥明月夜，玉人何处教吹箫。
                     </div>
                     <div class="tab-pane fade" id="tab2-item3">
                         <p>相见时难别亦难，东风无力百花残。
                         <p></p>春蚕到死丝方尽，蜡炬成灰泪始干。<p></p>晓镜但愁云鬓改，夜吟应觉月光寒。<p></p>
-                        蓬山此去无多路，青鸟殷勤为探看。</p>
+                        蓬山此去无多路，青鸟殷勤为探看。
                     </div>
                     <div class="tab-pane fade" id="tab2-item4">
                         <p>迢递高城百尺楼，绿杨枝外尽汀洲。
                         <p></p>贾生年少虚垂泪，王粲春来更远游。<p></p>永忆江湖归白发，欲回天地入扁舟。<p></p>
-                        不知腐鼠成滋味，猜意鸳雏竟未休。 </p>
+                        不知腐鼠成滋味，猜意鸳雏竟未休。
                     </div>
                     <div class="tab-pane fade" id="tab2-item5">
                         <p>云物凄凉拂曙流，汉家宫阙动高秋。
                         <p></p>残星几点雁横塞，长笛一声人倚楼。<p></p>紫艳半开篱菊静，红衣落尽渚莲愁。<p></p>
-                        鲈鱼正美不归去，空戴南冠学楚囚。 </p>
+                        鲈鱼正美不归去，空戴南冠学楚囚。
                     </div>
                     <div class="tab-pane fade" id="tab2-item6">
                         <p>晨起动征铎，客行悲故乡。
-                        <p></p>鸡声茅店月，人迹板桥霜。<p></p>槲叶落山路，枳花明驿墙。<p></p>因思杜陵梦，凫雁满回塘。 </p>
+                        <p></p>鸡声茅店月，人迹板桥霜。<p></p>槲叶落山路，枳花明驿墙。<p></p>因思杜陵梦，凫雁满回塘。
                     </div>
                 </div>
             </div>
@@ -216,6 +216,8 @@
 <script type="text/javascript" src="{% static 'js/lightbox.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/theme-toggle.js' %}"></script>
+
 </body>
 
 </html>

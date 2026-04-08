@@ -22,15 +22,15 @@
     <div class="navbar navbar-inverse" role="banner">
         <div class="container">
             <div class="header-left">
-                    {% if user.is_authenticated %}
+                {% if user.is_authenticated %}
                     <div class="user-menu dropdown">
                         <a href="#" class="user-avatar dropdown-toggle" data-toggle="dropdown">
                             {% if user.avatar %}
-                            <img src="{{ user.avatar.url }}" alt="头像">
+                                <img src="{{ user.avatar.url }}" alt="头像">
                             {% else %}
-                            <div class="default-avatar">
-                                <i class="fa fa-user"></i>
-                            </div>
+                                <div class="default-avatar">
+                                    <i class="fa fa-user"></i>
+                                </div>
                             {% endif %}
                             <span class="username">{{ user.username|default:"用户" }}</span>
                             <i class="fa fa-angle-down"></i>
@@ -41,14 +41,14 @@
                             <li><a href="{% url 'users:logout' %}"><i class="fa fa-sign-out"></i> 退出登录</a></li>
                         </ul>
                     </div>
-                    {% else %}
+                {% else %}
                     <div class="user-menu">
                         <a href="{% url 'users:login' %}" class="btn-login">
                             <i class="fa fa-user"></i> 登录
                         </a>
                     </div>
-                    {% endif %}
-                </div>
+                {% endif %}
+            </div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -206,6 +206,8 @@
 <script type="text/javascript" src="{% static 'js/lightbox.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/theme-toggle.js' %}"></script>
+
 </body>
 
 </html>

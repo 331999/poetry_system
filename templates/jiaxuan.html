@@ -24,15 +24,15 @@
     <div class="navbar navbar-inverse" role="banner">
         <div class="container">
             <div class="header-left">
-                    {% if user.is_authenticated %}
+                {% if user.is_authenticated %}
                     <div class="user-menu dropdown">
                         <a href="#" class="user-avatar dropdown-toggle" data-toggle="dropdown">
                             {% if user.avatar %}
-                            <img src="{{ user.avatar.url }}" alt="头像">
+                                <img src="{{ user.avatar.url }}" alt="头像">
                             {% else %}
-                            <div class="default-avatar">
-                                <i class="fa fa-user"></i>
-                            </div>
+                                <div class="default-avatar">
+                                    <i class="fa fa-user"></i>
+                                </div>
                             {% endif %}
                             <span class="username">{{ user.username|default:"用户" }}</span>
                             <i class="fa fa-angle-down"></i>
@@ -43,14 +43,14 @@
                             <li><a href="{% url 'users:logout' %}"><i class="fa fa-sign-out"></i> 退出登录</a></li>
                         </ul>
                     </div>
-                    {% else %}
+                {% else %}
                     <div class="user-menu">
                         <a href="{% url 'users:login' %}" class="btn-login">
                             <i class="fa fa-user"></i> 登录
                         </a>
                     </div>
-                    {% endif %}
-                </div>
+                {% endif %}
+            </div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -145,14 +145,14 @@
                                     <div class="post-overlay"></div>
                                 </div>
                             </div>
-{#                            {% for poem in poems %}#}
-{#                                {% if not forloop.counter0|divisibleby:"2" %}#}
-{#                                    <li>#}
-{#                                        <h2>{{ poem.poetry_name }}</h2>#}
-{#                                        <p>{{ poem.poetry_info }}</p>#}
-{#                                    </li>#}
-{#                                {% endif %}#}
-{#                            {% endfor %}#}
+                            {#                            {% for poem in poems %}#}
+                            {#                                {% if not forloop.counter0|divisibleby:"2" %}#}
+                            {#                                    <li>#}
+                            {#                                        <h2>{{ poem.poetry_name }}</h2>#}
+                            {#                                        <p>{{ poem.poetry_info }}</p>#}
+                            {#                                    </li>#}
+                            {#                                {% endif %}#}
+                            {#                            {% endfor %}#}
                             <div class="post-content overflow">
                                 <h2 class="post-title bold"><a href="#">水龙吟·登建康赏心亭</a></h2>
                                 <h3 class="post-author"><a href="#">辛弃疾</a></h3>
@@ -171,14 +171,14 @@
                                     <div class="post-overlay"></div>
                                 </div>
                             </div>
-{#                            {% for poem in poems %}#}
-{#                                {% if forloop.counter0|divisibleby:"2" %}#}
-{#                                    <li>#}
-{#                                        <h2>{{ poem.poetry_name }}</h2>#}
-{#                                        <p>{{ poem.poetry_info }}</p>#}
-{#                                    </li>#}
-{#                                {% endif %}#}
-{#                            {% endfor %}#}
+                            {#                            {% for poem in poems %}#}
+                            {#                                {% if forloop.counter0|divisibleby:"2" %}#}
+                            {#                                    <li>#}
+                            {#                                        <h2>{{ poem.poetry_name }}</h2>#}
+                            {#                                        <p>{{ poem.poetry_info }}</p>#}
+                            {#                                    </li>#}
+                            {#                                {% endif %}#}
+                            {#                            {% endfor %}#}
                             <div class="post-content overflow">
                                 <h2 class="post-title bold"><a href="#">青玉案·元夕</a></h2>
                                 <h3 class="post-author"><a href="#">辛弃疾</a></h3>
@@ -240,6 +240,8 @@
 <script type="text/javascript" src="{% static 'js/lightbox.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/theme-toggle.js' %}"></script>
+
 </body>
 
 </html>

@@ -25,15 +25,15 @@
     <div class="navbar navbar-inverse" role="banner">
         <div class="container">
             <div class="header-left">
-                    {% if user.is_authenticated %}
+                {% if user.is_authenticated %}
                     <div class="user-menu dropdown">
                         <a href="#" class="user-avatar dropdown-toggle" data-toggle="dropdown">
                             {% if user.avatar %}
-                            <img src="{{ user.avatar.url }}" alt="头像">
+                                <img src="{{ user.avatar.url }}" alt="头像">
                             {% else %}
-                            <div class="default-avatar">
-                                <i class="fa fa-user"></i>
-                            </div>
+                                <div class="default-avatar">
+                                    <i class="fa fa-user"></i>
+                                </div>
                             {% endif %}
                             <span class="username">{{ user.username|default:"用户" }}</span>
                             <i class="fa fa-angle-down"></i>
@@ -44,14 +44,14 @@
                             <li><a href="{% url 'users:logout' %}"><i class="fa fa-sign-out"></i> 退出登录</a></li>
                         </ul>
                     </div>
-                    {% else %}
+                {% else %}
                     <div class="user-menu">
                         <a href="{% url 'users:login' %}" class="btn-login">
                             <i class="fa fa-user"></i> 登录
                         </a>
                     </div>
-                    {% endif %}
-                </div>
+                {% endif %}
+            </div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -145,20 +145,20 @@
                                     </div>
                                 </div>
                             </div>
-{#                              {% for poem in poems %}#}
-{#                                {% if forloop.counter0|divisibleby:"2" %}#}
-{#                                    <li>#}
-{#                                        <h2>{{ poem.poetry_name }}</h2>#}
-{#                                        <p>{{ poem.poetry_info }}</p>#}
-{#                                    </li>#}
-{#                                {% endif %}#}
-{#                            {% endfor %}#}
                             <div class="post-content overflow">
                                 <h2 class="post-title bold"><a href="#">定风波·莫听穿林打叶声</a></h2>
                                 <h3 class="post-author"><a href="#">苏轼</a></h3>
                                 <p>莫听穿林打叶声，何妨吟啸且徐行。竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。
                                 <p></p>料峭春风吹酒醒，微冷，山头斜照却相迎。回首向来潇瑟处，归去，也无风雨也无晴。
                             </div>
+                            {% for poem in poems %}
+                                {% if forloop.counter0|divisibleby:"2" %}
+                                    <li>
+                                        <h2>{{ poem.poetry_name }}</h2>
+                                        <p>{{ poem.poetry_info }}</p>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="col-sm-6 padding-left padding-top arrow-left wow fadeInRight"
@@ -172,14 +172,6 @@
                                     </div>
                                 </div>
                             </div>
-{#                             {% for poem in poems %}#}
-{#                                {% if not forloop.counter0|divisibleby:"2"%}#}
-{#                                    <li>#}
-{#                                        <h2>{{ poem.poetry_name }}</h2>#}
-{#                                        <p>{{ poem.poetry_info }}</p>#}
-{#                                    </li>#}
-{#                                {% endif %}#}
-{#                            {% endfor %}#}
                             <div class="post-content overflow">
                                 <h2 class="post-title bold"><a href="#">水龙吟·似花还似非花</a></h2>
                                 <h3 class="post-author"><a href="#">苏轼</a></h3>
@@ -201,6 +193,14 @@
                                 <p>缺月挂疏桐，漏断人初静。谁见幽人独往来，缥缈孤鸿影。
                                 <p></p>惊起却回头，有恨无人省。拣尽寒枝不肯栖，寂寞沙洲冷。
                             </div>
+                            {% for poem in poems %}
+                                {% if not forloop.counter0|divisibleby:"2" %}
+                                    <li>
+                                        <h2>{{ poem.poetry_name }}</h2>
+                                        <p>{{ poem.poetry_info }}</p>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="col-sm-6 padding-right arrow-right wow fadeInLeft" data-wow-duration="1000ms"
@@ -213,7 +213,6 @@
                                     </iframe>
                                 </div>
                             </div>
-
                             <div class="post-content overflow">
                                 <h2 class="post-title bold"><a href="#">江城子·十年生死两茫茫</a></h2>
                                 <h3 class="post-author"><a href="#">苏轼</a></h3>
@@ -240,6 +239,8 @@
 <script type="text/javascript" src="{% static 'js/lightbox.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/theme-toggle.js' %}"></script>
+
 </body>
 
 </html>

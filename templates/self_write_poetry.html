@@ -13,6 +13,7 @@
     <link href="{% static 'css/animate.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
     <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+    <link href="{% static 'css/user-menu.css' %}" rel="stylesheet">
 </head>
 <body>
 <div id="app">
@@ -20,6 +21,34 @@
     <header id="header">
         <div class="navbar navbar-inverse" role="banner">
             <div class="container">
+                <div class="header-left">
+                    {% if user.is_authenticated %}
+                        <div class="user-menu dropdown">
+                            <a href="#" class="user-avatar dropdown-toggle" data-toggle="dropdown">
+                                {% if user.avatar %}
+                                    <img src="{{ user.avatar.url }}" alt="头像">
+                                {% else %}
+                                    <div class="default-avatar">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                {% endif %}
+                                <span class="username">{{ user.username|default:"用户" }}</span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu user-dropdown">
+                                <li><a href="{% url 'users:profile' %}"><i class="fa fa-user"></i> 个人中心</a></li>
+                                <li><a href="#" id="themeToggleMenu"><i class="fa fa-moon-o"></i> 切换主题</a></li>
+                                <li><a href="{% url 'users:logout' %}"><i class="fa fa-sign-out"></i> 退出登录</a></li>
+                            </ul>
+                        </div>
+                    {% else %}
+                        <div class="user-menu">
+                            <a href="{% url 'users:login' %}" class="btn-login">
+                                <i class="fa fa-user"></i> 登录
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
@@ -68,7 +97,6 @@
                             </ul>
                         </li>
                         <li><a href="{% url 'write:selfWrite' %}">挥毫泼墨</a></li>
-                        <li><a href="{% url 'discuss' %}">推心置腹</a></li>
                         <li><a href="{% url 'question:find' %}">孰能无惑</a></li>
                     </ul>
                 </div>
@@ -144,13 +172,16 @@
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators visible-xs">
                         {% for image in carousel_images %}
-                            <li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}"
+                                {% if forloop.first %}class="active"{% endif %}></li>
                         {% endfor %}
                     </ol>
                     <div class="carousel-inner" style="width: 100%; height: 400px; overflow: hidden;">
                         {% for image in carousel_images %}
-                            <div class="item {% if forloop.first %}active{% endif %}" style="width: 100%; height: 100%;">
-                                <img src="{% static image %}" alt="轮播图{{ forloop.counter }}" style="width: 100%; height: 100%; object-fit: cover;">
+                            <div class="item {% if forloop.first %}active{% endif %}"
+                                 style="width: 100%; height: 100%;">
+                                <img src="{% static image %}" alt="轮播图{{ forloop.counter }}"
+                                     style="width: 100%; height: 100%; object-fit: cover;">
                                 <div class="carousel-caption">
                                 </div>
                             </div>
@@ -272,9 +303,10 @@
 <script type="text/javascript" src="{% static 'js/lightbox.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/vue-2.5.16.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/axios-0.18.0.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/self_write_poetry.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/theme-toggle.js' %}"></script>
+
 
 </body>
 </html>

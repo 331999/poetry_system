@@ -19,7 +19,7 @@ class QuestionPaser:
     def parser_main(self, res_classify):
         """
         解析主函数
-        :param res_classify:{'args': {'阿尔泰狗娃花': ['study']}, 'question_types': ['study_style']}
+        :param res_classify:{'args': {'李白': ['study']}, 'question_types': ['study_style']}
         :return: 返回sql查询语句给图谱，可以是多条
         """
         args = res_classify['args']

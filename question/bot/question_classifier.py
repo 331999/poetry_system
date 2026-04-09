@@ -46,7 +46,7 @@ class QuestionClassifier:
     def build_wdtype_dict(self):
         """构造词对应的类型"""
         wd_dict = dict()
-        # 找到用户输入的词是什么范围的，比如用户输入阿尔泰狗娃花，这个单词属于学名？药用部位？生长地？还是治疗疾病
+        # 找到用户输入的词是什么范围的
         for wd in self.region_words:
             wd_dict[wd] = []
             if wd in self.poet_name_wds:
@@ -67,11 +67,11 @@ class QuestionClassifier:
         """获取到问句中属于节点中的词语"""
         # 定义一个列表储存存在节点中的词语
         region_wds = []
-        # ahocorasick库 匹配问题  iter返回一个元组，i的形式如(5, (292, '阿尔泰狗娃花'))
+        # ahocorasick库 匹配问题  iter返回一个元组，i的形式如(5, (292, '123'))
         for i in self.region_tree.iter(question):
             wd = i[1][1]  # 匹配到的词
             region_wds.append(wd)
-        # stop_wds取重复的短的词，如region_wds=['阿尔泰狗娃花','花']，则stop_wds=['花']
+        # stop_wds取重复的短的词，如region_wds=['123','3']，则stop_wds=['3']
         stop_wds = []
         for wd1 in region_wds:
             # print(wd1)

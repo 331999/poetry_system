@@ -137,20 +137,30 @@ body {
     display: inline-block;
     background-color: rgba(191, 191, 191);
     border-radius: 10px;
-    padding: 5px 10px;
+    padding: 10px 15px;
     max-width: 80%;
     word-wrap: break-word;
     margin-right: auto;
+    line-height: 1.6;
+    font-size: 15px;
+    color: #333;
+    white-space: pre-wrap;
+    text-align: left;
 }
 
 .btalk span {
     display: inline-block;
     background-color: rgba(191, 191, 191);
     border-radius: 10px;
-    padding: 5px 10px;
+    padding: 10px 15px;
     max-width: 80%;
     word-wrap: break-word;
     margin-left: auto;
+    line-height: 1.6;
+    font-size: 15px;
+    color: #333;
+    white-space: pre-wrap;
+    text-align: left;
 }
 
 /* 滚动条整体样式 */
@@ -173,4 +183,146 @@ body {
 /* 滚动条手柄悬停样式 */
 .talk_show::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+/* 消息包装器样式 */
+.message-wrapper {
+    position: relative;
+    display: inline-block;
+    max-width: 80%;
+}
+
+.message-text {
+    display: inline-block;
+    background-color: rgba(191, 191, 191);
+    border-radius: 10px;
+    padding: 10px 15px;
+    word-wrap: break-word;
+    line-height: 1.6;
+    font-size: 15px;
+    color: #333;
+    white-space: pre-wrap;
+    text-align: left;
+}
+
+.atalk .message-wrapper {
+    margin-right: auto;
+}
+
+.btalk .message-wrapper {
+    margin-left: auto;
+}
+
+.atalk .message-text {
+    margin-right: auto;
+}
+
+.btalk .message-text {
+    margin-left: auto;
+}
+
+/* 复制按钮样式 */
+.copy-btn {
+    position: absolute;
+    bottom: -30px;
+    right: 5px;
+    padding: 3px 10px;
+    font-size: 12px;
+    color: #666;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s, background-color 0.3s, transform 0.2s;
+    z-index: 10;
+}
+
+.message-wrapper:hover .copy-btn {
+    opacity: 1;
+}
+
+.copy-btn:hover {
+    background-color: #1282c9;
+    color: #fff;
+    border-color: #1282c9;
+    transform: translateY(-2px);
+}
+
+.copy-btn:active {
+    transform: scale(0.95);
+}
+
+/* 消息区域增加底部间距，避免复制按钮与输入框重叠 */
+.atalk,
+.btalk {
+    margin-bottom: 40px;
+}
+
+/* 复制成功提示样式 */
+.copy-toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px);
+    background-color: rgba(18, 130, 201, 0.95);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10000;
+    transition: transform 0.3s ease-out;
+}
+
+.copy-toast.show {
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 诗歌内容特殊样式 */
+.poem-content {
+    font-family: 'KaiTi', 'STKaiti', '楷体', serif;
+    line-height: 2;
+    text-indent: 2em;
+    letter-spacing: 1px;
+}
+
+.poem-content br {
+    line-height: 2.5;
+}
+
+/* 打字机效果光标（可选） */
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+.typing-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background-color: #333;
+    margin-left: 2px;
+    animation: blink 1s infinite;
+}
+
+/* 淡入动画 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

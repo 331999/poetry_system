@@ -29,11 +29,42 @@ class ChatBotGraph:
             return '\n'.join(final_answers)  # 连接字符
 
 
-# if __name__ == '__main__':
-#     handler = ChatBotGraph()
-#     while True:  # 进入一个死循环
-#         question = input('请输入内容开始查询:')
-#         answer = handler.chat_main(question)
+class ChatBotHybrid:
+    def __init__(self, use_rag=True):
+        self.kg_bot = ChatBotGraph()
+        self.use_rag = use_rag
+        self.rag_pipeline = None
+
+        if use_rag:
+            try:
+                from question.rag import RAGPipeline
+                self.rag_pipeline = RAGPipeline()
+                print("✓ RAG系统初始化成功")
+            except Exception as e:
+                print(f"⚠ RAG系统初始化失败: {e}")
+                self.use_rag = False
+
+    def chat_main(self, sent):
+        if self.use_rag and self.rag_pipeline:
+            try:
+                result = self.rag_pipeline.query(sent, use_history=False)
+                answer = result['answer']
+
+                if result['metadata']['kg_results'] > 0:
+                    kg_answer = self.kg_bot.chat_main(sent)
+                    if kg_answer:
+                        answer = f"{answer}\n\n【知识图谱补充】\n{kg_answer}"
+
+                return answer
+            except Exception as e:
+                print(f"RAG查询出错: {e}")
+                return self.kg_bot.chat_main(sent)
+        else:
+            return self.kg_bot.chat_main(sent)
+
+    def clear_history(self):
+        if self.rag_pipeline:
+            self.rag_pipeline.clear_history()
 
 
-bot = ChatBotGraph()
+bot = ChatBotHybrid(use_rag=True)

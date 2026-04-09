@@ -25,7 +25,6 @@ urlpatterns = [
     path('', include('contents.urls')),
     path('question/', include('question.urls')),
     path('dynasty/', include('poetry.urls')),
-    path('', include('discuss.urls')),
     path('write/', include('write.urls')),
 ]
 

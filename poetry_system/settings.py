@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'contents',
     'poetry',
     'question',
-    'discuss',
     'write',
 
 ]

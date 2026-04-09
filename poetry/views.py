@@ -4,10 +4,6 @@ from django.views import View
 from django.views.generic.list import ListView
 from poetry.models import Poetry
 
-class Dynasty(View):
-    def get(self, request):
-        return render(request, 'dynasty_detail.html')
-
 # 响应自己写的诗
 class WritePoetry(View):
     def get(self, request):

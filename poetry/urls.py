@@ -3,9 +3,6 @@ from django.urls import path
 from poetry import views
 
 urlpatterns = [
-    # 响应朝代界面
-    path('tang/', views.Dynasty.as_view(), name='dynasty'),
-
     # 响应自己写的诗
     path('write/', views.WritePoetry.as_view(), name='write'),
 

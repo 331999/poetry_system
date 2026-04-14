@@ -10,11 +10,11 @@ from pathlib import Path
 class RAGConfig:
     BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-    DEEPSEEK_API_KEY = "sk-8b9e2719092f4a8bb33dc00b07a5bf6f"
+    DEEPSEEK_API_KEY = "zzzzzzzzzzzzzzzzzzzzzzzzzzz"
     DEEPSEEK_BASE_URL = "https://api.deepseek.com/v1"
     DEEPSEEK_MODEL = "deepseek-chat"
 
-    ZHIPU_API_KEY = "8a68a0298fe243488bf395a5826df361.N4n6wVvjDR6OQ299"
+    ZHIPU_API_KEY = "zzzzzzzzzzzzzzzzzzzzzzzzzz"
     ZHIPU_EMBEDDING_MODEL = "embedding-2"
 
     CHROMA_PERSIST_DIR = str(BASE_DIR / "question" / "rag" / "chroma_db")
@@ -25,7 +25,7 @@ class RAGConfig:
 
     NEO4J_URI = "bolt://localhost:7687"
     NEO4J_USER = "neo4j"
-    NEO4J_PASSWORD = "12345678"
+    NEO4J_PASSWORD = "zzzzzzzzzzzzzzzzzzzz"
 
     RETRIEVAL_TOP_K = 5
     TEMPERATURE = 0.7

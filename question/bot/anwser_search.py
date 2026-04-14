@@ -5,7 +5,7 @@ from py2neo import Graph
 
 class AnswerSearcher:
     def __init__(self):  # 调用数据库进行查询
-        self.g = Graph("bolt://localhost:7687", auth=("neo4j", "12345678"))  # 输入自己修改的用户名，密码
+        self.g = Graph("bolt://localhost:7687", auth=("neo4j", "zzzzzzzzzzzzzzzzzzz"))  # 输入自己修改的用户名，密码
         self.num_limit = 20  # 最多显示字符数量
 
     def search_main(self, sqls):
